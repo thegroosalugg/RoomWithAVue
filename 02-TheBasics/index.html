@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Basics</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>Vue Basics</h1>
+    </header>
+    <section id="vue-basics">
+      <h2>Room with a Vue</h2>
+      <!-- Vue interpolation for values rendered directly in the HTML template -->
+      <p>{{ someText }}</p>
+      <p>This is a function, it will re-render on any reactive update: {{ randomNum() }}</p>
+      <!-- v-html === dangerouslySetInnerHTML from React -->
+      <!-- v-bind: allows setting dynamic values to HTML attributes -->
+      <p>This is a v-bind:href to <a v-bind:href="someLink">main directory</a></p>
+      <h2>These are some event binders: v-on:click</h2>
+      <div class="buttons">
+        <button v-on:click="counter++">Add</button>
+        <button v-on:click="counter--">Remove</button>
+      </div>
+      <p>Result: {{ counter }}</p>
+    </section>
+  </body>
+</html>
