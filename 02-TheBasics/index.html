@@ -17,10 +17,13 @@
       <h1>Vue Basics</h1>
     </header>
     <section id="vue-basics">
-      <h2>Room with a Vue</h2>
+      <h2>Dynamic values and attributes</h2>
       <!-- Vue interpolation for values rendered directly in the HTML template -->
       <p>{{ someText }}</p>
-      <p>This is a function, it will re-render on any reactive update: {{ randomNum() }}</p>
+      <p>
+        This is a function, it will re-render on any reactive update:
+        <span>{{ randomNum() }}</span>
+      </p>
       <!-- v-html === dangerouslySetInnerHTML from React -->
       <!-- v-bind: allows setting dynamic values to HTML attributes -->
       <p>This is a v-bind:href to <a v-bind:href="someLink">main directory</a></p>
@@ -30,6 +33,24 @@
         <button v-on:click="counter--">Remove</button>
       </div>
       <p>Result: {{ counter }}</p>
+      <!-- event.modifier allows you to fine tune how the event responds: i.e. specify key or button -->
+      <button
+        class="modifier"
+        v-on:click.left="onClick('Left')"
+        v-on:click.middle="onClick('Middle')"
+        v-on:click.right="onClick('Right')"
+      >
+        {{ status }}
+      </button>
+      <!-- event.modify to preventDefault submit event -->
+      <form v-on:submit.prevent="onSubmit">
+        <!-- :input triggers on every value change; :change triggers after you lose focus -->
+        <!-- $event passed automatically with 0 args, must be passed explicitly as $event if args >= 1 -->
+        <!-- multiple events can exist -->
+        <input v-on:input="changeText($event, 'change')" v-on:keydown.ctrl="changeText" />
+        <p>{{ inputText }}</p>
+        <p>{{ keyDnText }}</p>
+      </form>
     </section>
   </body>
 </html>
