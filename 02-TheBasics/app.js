@@ -1,12 +1,13 @@
 const app = Vue.createApp({
   data() {
     return {
-       someText: "This static text will change on mounted() timeout",
-       someLink: "http://localhost:5500/",
-      inputText: "This will update on change",
-      keyDnText: "This will update on CTRL key down",
-        counter: 0,
-         status: "Click with Left/Middle/Right mouse"
+        someText: "This static text will change on mounted() timeout",
+        someLink: "http://localhost:5500/",
+       inputText: "This will update on change",
+       keyDnText: "This will update on CTRL key down",
+         counter: 0,
+          status: "Click with Left/Middle/Right mouse",
+      boundInput: ""
     };
   },
   // Vue lifecycle hook that runs when DOM is ready to execute side effects
@@ -29,6 +30,12 @@ const app = Vue.createApp({
     },
     onSubmit() {
       alert("Submitted");
+    },
+    bindInput(event) {
+      this.boundInput = event.target.value?.trim();
+    },
+    resetInput() {
+      this.boundInput = "";
     }
   },
 });

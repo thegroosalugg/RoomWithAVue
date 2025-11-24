@@ -21,18 +21,19 @@
       <!-- Vue interpolation for values rendered directly in the HTML template -->
       <p>{{ someText }}</p>
       <p>
-        This is a function, it will re-render on any reactive update:
-        <span>{{ randomNum() }}</span>
+        Interpolated functions re-execute on any reactive update; v-once locks them.
+        <span v-once>{{ randomNum() }}</span>
       </p>
       <!-- v-html === dangerouslySetInnerHTML from React -->
       <!-- v-bind: allows setting dynamic values to HTML attributes -->
       <p>This is a v-bind:href to <a v-bind:href="someLink">main directory</a></p>
-      <h2>These are some event binders: v-on:click</h2>
+      <h2>Event binders: v-on:click</h2>
       <div class="buttons">
         <button v-on:click="counter++">Add</button>
         <button v-on:click="counter--">Remove</button>
       </div>
       <p>Result: {{ counter }}</p>
+      <h2>Event.modifiers</h2>
       <!-- event.modifier allows you to fine tune how the event responds: i.e. specify key or button -->
       <button
         class="modifier"
@@ -51,6 +52,14 @@
         <p>{{ inputText }}</p>
         <p>{{ keyDnText }}</p>
       </form>
+      <h2>2-way binding: v-bind, v-model</h2>
+      <div class="bind-form">
+        <label>This uses v-bind and v-on:input="custom JS code"</label>
+        <input v-bind:value="boundInput" v-on:input="bindInput" />
+        <label>This uses only v-model for 2 way binding</label>
+        <input v-model="boundInput" />
+        <button v-on:click="resetInput">Reset Input Text</button>
+      </div>
     </section>
   </body>
 </html>
