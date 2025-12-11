@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Basics</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>Vue Basics</h1>
+    </header>
+    <section id="vue-basics">
+      <h2>Dynamic values and attributes</h2>
+      <!-- Vue interpolation for values rendered directly in the HTML template -->
+      <p>{{ someText }}</p>
+      <p>
+        Interpolated functions re-execute on any reactive update.
+        <span>{{ randomNum() }}</span>
+      </p>
+      <p>
+        Reactive values can be locked with v-once
+        <span v-once>{{ randomNum() }}</span>
+      </p>
+      <p>
+        With Computed, Vue decides when the function is called
+        <!-- point to function only - do not call() it -->
+        <span v-once>{{ computedNum }}</span>
+      </p>
+      <!-- v-html === dangerouslySetInnerHTML from React -->
+      <!-- v-bind: allows setting dynamic values to HTML attributes -->
+      <p>This is a v-bind:href to <a v-bind:href="someLink">main directory</a></p>
+      <h2>Event binders: v-on:click</h2>
+      <div class="buttons">
+        <!-- @click is shorthand for v-on:click -->
+        <button v-on:click="counter++">Add</button>
+        <button v-on:click="counter--">Remove</button>
+      </div>
+      <p>Result is being watched: {{ counter }}</p>
+      <h2>Event.modifiers</h2>
+      <!-- event.modifier allows you to fine tune how the event responds: i.e. specify key or button -->
+      <!-- v-bind:class / shorthand :class or use :style inline- same as Angular, can accept {objects} and [arrays];
+       [arrays] can have a mix of strings or objects to combine classes & safely ignore null/undefined/false;
+       :class="['modifier', { active: isActive, disabled: isDisabled }]" -->
+      <button
+        :class="['modifier', cssClass]"
+        v-on:click.left="onClick('left')"
+        v-on:click.middle="onClick('middle')"
+        v-on:click.right="onClick('right')"
+      >
+        {{ status }}
+      </button>
+      <!-- event.modify to preventDefault submit event -->
+      <form v-on:submit.prevent="onSubmit">
+        <!-- :input triggers on every value change; :change triggers after you lose focus -->
+        <!-- $event passed automatically with 0 args, must be passed explicitly as $event if args >= 1 -->
+        <!-- multiple events can exist -->
+        <input v-on:input="changeText($event, 'change')" v-on:keydown.ctrl="changeText" />
+        <p>{{ inputText }}</p>
+        <p>{{ keyDnText }}</p>
+      </form>
+      <h2>2-way binding: v-bind, v-model</h2>
+      <div class="bind-form">
+        <label>This uses v-bind and v-on:input="custom JS code"</label>
+        <!-- :value is shorthand for v-bind:value -->
+        <input v-bind:value="boundInput" v-on:input="bindInput" />
+        <label>This uses only v-model for 2 way binding</label>
+        <input v-model="boundInput" />
+        <button v-on:click="resetInput">Reset Input Text</button>
+      </div>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A First App</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- add a root element where to add Vue -->
+    <div id="app">
+      <div>
+        <label for="item">Item</label>
+        <!-- v-model: binds element to data -->
+        <input type="text" id="item" v-model="enteredValue" />
+        <!-- v-on:event: points to method used -->
+        <button v-on:click="addItem">Add Item</button>
+      </div>
+      <ul>
+        <!-- v-for loop: creates an element for each item in Vue.createApp({ data[items] }) -->
+        <li v-for="item in items">{{ item }}</li>
+      </ul>
+    </div>
+    <!-- use Vue.Js version 3-->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
