@@ -17,12 +17,51 @@
       <h1>Conditional Content</h1>
     </header>
     <section id="vue-app">
-      <h2>Added items</h2>
-      <input />
-      <button>Add Item</button>
-      <p>Nothing here</p>
+      <h2>Add items below</h2>
+      <!-- v:model - 2 way binding -->
+      <input v-model="inputValue" />
+      <!-- @click === v-on:click -->
+      <button @click="addItem">Add Item</button>
+      <!-- v-show: changes CSS visibility with display: none; always remains in DOM. v-if: destroys/creates elements -->
+      <p v-show="items.length < 5" :style="{ margin: '1rem 0' }">
+        Element visible with v-show. Hides after {{ 5 - items.length }} items
+      </p>
+      <!-- v-if: conditional rendering in Vue -->
+      <p v-if="!items.length">Empty List Placeholder</p>
+      <!-- v-else must be used directly on an element after a v-if element (nothing can be in-between) -->
+      <ul v-else>
+        <!-- v-for: JS for of loop (in Vue uses 'in' keyword, unlike JS 'for in' which iterates an object): outputs dynamic content -->
+        <!-- v-bind:key shorthand :key -> like in React; in Vue however do not use index as key, even combined with other values -->
+        <li v-for="(item, index) in items" :key="item">
+          <p>{{ index }}: {{ item }}</p>
+          <div class="flex-between">
+            <input />
+            <button @click="removeItem(index)">X</button>
+          </div>
+        </li>
+      </ul>
+      <h2>Iterate objects</h2>
       <ul>
-        <li>Item</li>
+        <!-- v-for: can also iterate over objects -->
+        <li v-for="(value, key, index) in { place: 'Hudson River', time: '2 years ago' }">
+          {{ index }}: {{ key }}: {{ value }}
+        </li>
+      </ul>
+      <h2>Iterate numbers</h2>
+      <ul>
+        <!-- v-for: and numbers -->
+        <li
+          v-for="num in 5"
+          :key="num"
+          @click="toggle('parent', num)"
+          :class="['click-example', { active: parent === num }]"
+        >
+          <p>Parent click event {{ num }}</p>
+          <!-- click.stop stops parent click event from activating on child click event -->
+          <button @click.stop="toggle('child', num)" :class="{ active: child === num }">
+            Child click event
+          </button>
+        </li>
       </ul>
     </section>
   </body>
