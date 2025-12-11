@@ -45,11 +45,14 @@
       <p>Result is being watched: {{ counter }}</p>
       <h2>Event.modifiers</h2>
       <!-- event.modifier allows you to fine tune how the event responds: i.e. specify key or button -->
+      <!-- v-bind:class / shorthand :class or use :style inline- same as Angular, can accept {objects} and [arrays];
+       [arrays] can have a mix of strings or objects to combine classes & safely ignore null/undefined/false;
+       :class="['modifier', { active: isActive, disabled: isDisabled }]" -->
       <button
-        class="modifier"
-        v-on:click.left="onClick('Left')"
-        v-on:click.middle="onClick('Middle')"
-        v-on:click.right="onClick('Right')"
+        :class="['modifier', cssClass]"
+        v-on:click.left="onClick('left')"
+        v-on:click.middle="onClick('middle')"
+        v-on:click.right="onClick('right')"
       >
         {{ status }}
       </button>

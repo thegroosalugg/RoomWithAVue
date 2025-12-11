@@ -7,6 +7,7 @@ const app = Vue.createApp({
        keyDnText: "This will update on CTRL key down",
          counter: 0,
           status: "Click with Left/Middle/Right mouse",
+        cssClass: "",
       boundInput: ""
     };
   },
@@ -22,7 +23,7 @@ const app = Vue.createApp({
       if (this.counter > 10 || this.counter < -10) this.counter = 0;
     }
   },
-  // computed like in Angular - used with data binding
+  // computed like in Angular - used with data binding. Vue updates value only when dependencies change
   computed: {
     computedNum() {
       return this.randomNum();
@@ -40,6 +41,7 @@ const app = Vue.createApp({
     },
     onClick(side) {
       this.status = `${side} Click`;
+      this.cssClass = side;
     },
     onSubmit() {
       alert("Submitted");

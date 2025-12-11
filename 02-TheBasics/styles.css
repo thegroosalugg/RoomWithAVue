@@ -91,6 +91,7 @@ button {
   padding: 0.05rem 1rem;
   border-radius: 20px;
   box-shadow: 1px 1px 2px var(--shadow);
+  transition: 0.5s ease;
 
   &:hover, &:active {
     background-color: var(--magenta);
@@ -99,8 +100,16 @@ button {
   }
 
   &.modifier {
+    --color: var(--purple);
+    border: none;
+    background-color: var(--color);
     width: 80%;
     margin: auto;
+    text-transform: capitalize;
+
+    &.left   { --color: #42b6c0; }
+    &.middle { --color: #6cc042; }
+    &.right  { --color: #c09a42; }
   }
 }
 
