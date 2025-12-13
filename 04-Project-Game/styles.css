@@ -32,54 +32,44 @@
                 0 -12px 24px -8px rgb(0 0 0 / 0.15);
   --shadow-inset: inset 0 -20px 20px -20px rgb(0 0 0 / 0.3);
 
-  --stone-50:  oklch(0.985 0.001 106.423);
-  --stone-100: oklch(0.97  0.001 106.424);
-  --stone-200: oklch(0.923 0.003 48.717);
-  --stone-300: oklch(0.869 0.005 56.366);
-  --stone-400: oklch(0.709 0.01  56.259);
-  --stone-500: oklch(0.553 0.013 58.071);
-  --stone-600: oklch(0.444 0.011 73.639);
-  --stone-700: oklch(0.374 0.01  67.558);
-  --stone-800: oklch(0.268 0.007 34.298);
-  --stone-900: oklch(0.216 0.006 56.043);
-  --stone-950: oklch(0.147 0.004 49.25);
-
-  --lime-400: oklch(0.841 0.238 128.85);
-  --lime-500: oklch(0.768 0.233 130.85);
-  --lime-600: oklch(0.648 0.2 131.684);
-
-  --rust-400: oklch(0.64938 0.16722 44.024);
-  --rust-500: oklch(0.66199 0.18165 36.227);
-  --rust-600: oklch(0.59307 0.14715 33.287);
-
-  --red-400: oklch(0.704 0.191 22.216);
-  --red-500: oklch(0.637 0.237 25.331);
-  --red-600: oklch(0.577 0.245 27.325);
-
-  --rose-400: oklch(0.712 0.194 13.428);
-  --rose-500: oklch(0.645 0.246 16.439);
-  --rose-600: oklch(0.586 0.253 17.585);
-
-  --pink-400: oklch(0.718 0.202 349.761);
-  --pink-500: oklch(0.656 0.241 354.308);
-  --pink-600: oklch(0.592 0.249 0.584);
-
-  --amber-400: oklch(0.828 0.189 84.429);
-  --amber-500: oklch(0.769 0.188 70.08);
-  --amber-600: oklch(0.666 0.179 58.318);
-
-  --steel-400: oklch(0.64262 0.107 242.849);
-  --steel-500: oklch(0.55837 0.109 246.312);
-  --steel-600: oklch(0.50706 0.087 244.748);
-
-  --fuchsia-400: oklch(0.74 0.238 322.16);
+  --stone-50:    oklch(0.985 0.001 106.423);
+  --stone-100:   oklch(0.97  0.001 106.424);
+  --stone-200:   oklch(0.923 0.003 48.717);
+  --stone-300:   oklch(0.869 0.005 56.366);
+  --stone-400:   oklch(0.709 0.01  56.259);
+  --stone-500:   oklch(0.553 0.013 58.071);
+  --stone-600:   oklch(0.444 0.011 73.639);
+  --stone-700:   oklch(0.374 0.01  67.558);
+  --stone-800:   oklch(0.268 0.007 34.298);
+  --stone-900:   oklch(0.216 0.006 56.043);
+  --stone-950:   oklch(0.147 0.004 49.25);
+  --lime-400:    oklch(0.841 0.238 128.85);
+  --lime-500:    oklch(0.768 0.233 130.85);
+  --lime-600:    oklch(0.648 0.2   131.684);
+  --amber-400:   oklch(0.828 0.189 84.429);
+  --amber-500:   oklch(0.769 0.188 70.08);
+  --amber-600:   oklch(0.666 0.179 58.318);
+  --rust-400:    oklch(0.649 0.167 44.024);
+  --rust-500:    oklch(0.661 0.181 36.227);
+  --rust-600:    oklch(0.593 0.147 33.287);
+  --red-400:     oklch(0.704 0.191 22.216);
+  --red-500:     oklch(0.637 0.237 25.331);
+  --red-600:     oklch(0.577 0.245 27.325);
+  --rose-400:    oklch(0.712 0.194 13.428);
+  --rose-500:    oklch(0.645 0.246 16.439);
+  --rose-600:    oklch(0.586 0.253 17.585);
+  --pink-400:    oklch(0.718 0.202 349.761);
+  --pink-500:    oklch(0.656 0.241 354.308);
+  --pink-600:    oklch(0.592 0.249 0.584);
+  --fuchsia-400: oklch(0.74  0.238 322.16);
   --fuchsia-500: oklch(0.667 0.295 322.15);
   --fuchsia-600: oklch(0.591 0.293 322.896);
-
-  --violet-400: oklch(0.702 0.183 293.541);
-  --violet-500: oklch(0.606 0.25 292.717);
-  --violet-600: oklch(0.541 0.281 293.009);
-
+  --violet-400:  oklch(0.702 0.183 293.541);
+  --violet-500:  oklch(0.606 0.25  292.717);
+  --violet-600:  oklch(0.541 0.281 293.009);
+  --steel-400:   oklch(0.642 0.107 242.849);
+  --steel-500:   oklch(0.558 0.109 246.312);
+  --steel-600:   oklch(0.507 0.087 244.748);
 
   --page:    var(--stone-200); /* page/box: background surfaces */
   --box:     var(--stone-100);
@@ -197,6 +187,7 @@ section {
     height: 100%;
     border-radius: var(--rounded-2xl);
     background-color: var(--success);
+    transition: width 0.5s ease, background-color 0.5s ease;
   }
 }
 
@@ -212,13 +203,14 @@ section {
   justify-content: center;
 
   button {
+    --color: var(--support);
     width: 12rem;
     margin: 1rem;
     padding: 1rem 2rem;
-    border: var(--border) var(--support);
+    border: var(--border);
     border-radius: var(--rounded-lg);
     color: var(--page);
-    background-color: var(--support);
+    background-color: var(--color);
     box-shadow: var(--shadow-lg);
     text-wrap: nowrap;
     font-weight: 600;
@@ -232,7 +224,7 @@ section {
     }
 
     &:disabled {
-      opacity: 0.6;
+      --color: var(--soft);
       pointer-events: none;
       box-shadow: none;
     }

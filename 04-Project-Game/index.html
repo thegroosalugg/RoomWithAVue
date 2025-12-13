@@ -20,17 +20,17 @@
       <section id="them" class="box">
         <h2>Their Health</h2>
         <div class="health">
-          <div class="bar"></div>
+          <div class="bar" :style="theirHealth"></div>
         </div>
       </section>
       <section id="you" class="box">
         <h2>Your Health</h2>
         <div class="health">
-          <div class="bar"></div>
+          <div class="bar" :style="yourHealth"></div>
         </div>
       </section>
       <section id="controls">
-        <button>Attack</button>
+        <button @click="attack" :disabled="isDisabled">Attack</button>
         <button>Special</button>
         <button>Heal</button>
         <button>Run</button>
