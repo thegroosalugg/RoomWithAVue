@@ -13,6 +13,8 @@ function data() {
      you: 100,
     them: 100,
     isProcessing: false,
+    actions: ['attack', 'special', 'heal', 'run'],
+    activeAction: null,
   };
 };
 
@@ -29,6 +31,11 @@ const computed = {
 };
 
 const methods = {
+  clickHandler(action) {
+    if (!this.actions.includes(action)) return;
+    this.activeAction = action;
+    this[action]();
+  },
   process(callback) {
     if (this.isProcessing) return;
     this.isProcessing = true;
@@ -44,7 +51,22 @@ const methods = {
         this.you -= rand(5, 15);
       }, 500);
     });
-  }
+  },
+  special() {
+    this.process(() => {
+      console.log('special');
+    });
+  },
+  heal() {
+    this.process(() => {
+      console.log('heal');
+    });
+  },
+  run() {
+    this.process(() => {
+      console.log('run');
+    });
+  },
 };
 
 const app = Vue.createApp({ data, computed, methods });

@@ -30,10 +30,15 @@
         </div>
       </section>
       <section id="controls">
-        <button @click="attack" :disabled="isDisabled">Attack</button>
-        <button>Special</button>
-        <button>Heal</button>
-        <button>Run</button>
+        <button
+          v-for="(action, index) in actions"
+          :key="action"
+          @click="clickHandler(action)"
+          :disabled="isDisabled"
+          :style="{ transitionDelay: (activeAction === action ? 0 : (index + 1) * 0.1) + 's' }"
+        >
+          {{ action }}
+        </button>
       </section>
       <section id="log" class="box">
         <h2>Battle Log</h2>
