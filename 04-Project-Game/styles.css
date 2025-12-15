@@ -171,16 +171,18 @@ h2 {
   font-weight: bold;
 }
 
-section {
-  width: 90%;
-  max-width: 40rem;
-}
-
-#game {
+#play, #game-over {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
+  width: 90%;
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+#play {
+  align-items: stretch;
 }
 
 .health-bar {
@@ -206,33 +208,33 @@ section {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+}
 
-  button {
-    --color: var(--support);
-    width: 12rem;
-    margin: 1rem;
-    padding: 1rem 2rem;
-    border: var(--border);
-    border-radius: var(--rounded-lg);
-    color: var(--page);
-    background-color: var(--color);
-    box-shadow: var(--shadow-lg);
-    text-wrap: nowrap;
-    font-weight: 600;
-    text-transform: uppercase;
-    transition: var(--transition);
+button {
+  --color: var(--support);
+  width: 12rem;
+  margin: 1rem;
+  padding: 1rem 2rem;
+  border: var(--border);
+  border-radius: var(--rounded-lg);
+  color: var(--page);
+  background-color: var(--color);
+  box-shadow: var(--shadow-lg);
+  text-wrap: nowrap;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: var(--transition);
 
-    &:hover, &:active {
-      filter: brightness(0.85);
-      box-shadow: var(--shadow-xl);
-      font-weight: 900;
-    }
+  &:hover, &:active {
+    filter: brightness(0.85);
+    box-shadow: var(--shadow-xl);
+    font-weight: 900;
+  }
 
-    &:disabled {
-      --color: var(--soft);
-      pointer-events: none;
-      box-shadow: none;
-    }
+  &:disabled {
+    --color: var(--soft);
+    pointer-events: none;
+    box-shadow: none;
   }
 }
 

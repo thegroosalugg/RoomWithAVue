@@ -22,6 +22,7 @@ function data() {
             them: 100,
     isProcessing: false,
          canHeal: false,
+      isGameOver: false,
          actions: ['attack', 'special', 'heal', 'run'],
     activeAction: null,
        battleLog: [],
@@ -42,9 +43,6 @@ const computed = {
   theirHealth() {
     return getHP(this.them);
   },
-  isGameOver() {
-    return this.you <= 0 || this.them <= 0;
-  },
   isDisabled() {
     return this.isProcessing || this.isGameOver;
   }
@@ -56,9 +54,26 @@ const methods = {
     this.isProcessing = true;
     this.activeAction = action;
     await this[action]();
+
     if (['heal', 'run'].includes(action))   this.canHeal = false;
     else if (this.you > 0 && this.you < 50) this.canHeal = true;
+
+    if (this.you <= 0 || this.them <= 0) {
+      if (action !== 'run') {
+        const [actor, text] = this.you <= 0 ? ['they', 'obliterated you'] : ['you', 'kicked their arse'];
+        this.log({ actor, text });
+      }
+      await wait(3000);
+      this.isGameOver = true;
+    }
     this.isProcessing = false;
+  },
+  replay() {
+    this.you  = 100;
+    this.them = 100;
+    this.battleLog = [];
+    this.canHeal    = false;
+    this.isGameOver = false;
   },
   log({ actor, text, type, value }) {
     const id = this.logId++;

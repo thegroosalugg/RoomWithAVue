@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vue Basics</title>
+    <title>Game</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
@@ -17,39 +17,45 @@
       <h1>Game</h1>
     </header>
     <div id="game">
-      <section class="box">
-        <h2 class="they">Their Health</h2>
-        <div class="health-bar">
-          <div class="bar" :style="theirHealth"></div>
-        </div>
-      </section>
-      <section class="box">
-        <h2 class="you">Your Health</h2>
-        <div class="health-bar">
-          <div class="bar" :style="yourHealth"></div>
-        </div>
-      </section>
-      <section id="controls">
-        <button
-          v-for="(action, index) in actions"
-          :key="action"
-          @click="clickHandler(action)"
-          :disabled="action === 'heal' ? !canHeal : isDisabled"
-          :style="{ transitionDelay: (activeAction === action ? 0 : (index + 1) * 0.1) + 's' }"
-        >
-          {{ action }}
-        </button>
-      </section>
-      <section id="log" class="box">
-        <h2>Battle Log</h2>
-        <ul>
-          <li v-for="{ id, actor, text, type, value } in battleLog" :key="id">
-            <strong :class="actor">{{ actor }}</strong>
-            {{ text }}
-            <span :class="type">{{ value }} {{ type }}</span>
-          </li>
-        </ul>
-      </section>
+      <div v-if="isGameOver" id="game-over" class="box">
+        <h2>Game Over</h2>
+        <button @click="replay">Replay</button>
+      </div>
+      <div v-else id="play">
+        <section class="box">
+          <h2 class="they">Their Health</h2>
+          <div class="health-bar">
+            <div class="bar" :style="theirHealth"></div>
+          </div>
+        </section>
+        <section class="box">
+          <h2 class="you">Your Health</h2>
+          <div class="health-bar">
+            <div class="bar" :style="yourHealth"></div>
+          </div>
+        </section>
+        <section id="controls">
+          <button
+            v-for="(action, index) in actions"
+            :key="action"
+            @click="clickHandler(action)"
+            :disabled="action === 'heal' ? !canHeal : isDisabled"
+            :style="{ transitionDelay: (activeAction === action ? 0 : (index + 1) * 0.1) + 's' }"
+          >
+            {{ action }}
+          </button>
+        </section>
+        <section id="log" class="box">
+          <h2>Battle Log</h2>
+          <ul>
+            <li v-for="{ id, actor, text, type, value } in battleLog" :key="id">
+              <strong :class="actor">{{ actor }}</strong>
+              {{ text }}
+              <span :class="type">{{ value }} {{ type }}</span>
+            </li>
+          </ul>
+        </section>
+      </div>
     </div>
   </body>
 </html>
