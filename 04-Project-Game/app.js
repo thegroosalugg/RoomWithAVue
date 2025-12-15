@@ -2,21 +2,38 @@ function rand(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function clamp(value) {
+  return Math.min(100, Math.max(value, 0));
+}
+
+function wait(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 function getHP(hp) {
-  const width = Math.max(hp, 0) + '%';
+  const width = clamp(hp) + '%';
   const backgroundColor = `var(--${hp < 25 ? 'danger' : hp < 50 ? 'warning' : 'success'})`;
   return { width, backgroundColor };
 }
 
 function data() {
   return {
-     you: 100,
-    them: 100,
+             you: 100,
+            them: 100,
     isProcessing: false,
-    actions: ['attack', 'special', 'heal', 'run'],
+         canHeal: false,
+         actions: ['attack', 'special', 'heal', 'run'],
     activeAction: null,
+       battleLog: [],
+           logId: 0,
   };
 };
+
+const watch = {
+  you(newVal) {
+    if (newVal <= 0) this.canHeal = false;
+  }
+}
 
 const computed = {
   yourHealth() {
@@ -25,50 +42,67 @@ const computed = {
   theirHealth() {
     return getHP(this.them);
   },
+  isGameOver() {
+    return this.you <= 0 || this.them <= 0;
+  },
   isDisabled() {
-    return this.isProcessing || this.you < 0 || this.them < 0;
+    return this.isProcessing || this.isGameOver;
   }
 };
 
 const methods = {
-  clickHandler(action) {
-    if (!this.actions.includes(action)) return;
-    this.activeAction = action;
-    this[action]();
-  },
-  process(callback) {
-    if (this.isProcessing) return;
+  async clickHandler(action) {
+    if (!this.actions.includes(action) || this.isProcessing) return;
     this.isProcessing = true;
-    callback();
-    setTimeout(() => {
-      this.isProcessing = false;
-    }, 1000);
+    this.activeAction = action;
+    await this[action]();
+    if (['heal', 'run'].includes(action))   this.canHeal = false;
+    else if (this.you > 0 && this.you < 50) this.canHeal = true;
+    this.isProcessing = false;
   },
-  attack() {
-    this.process(() => {
-      this.them -= rand(2, 9);
-      setTimeout(() => {
-        this.you -= rand(5, 15);
-      }, 500);
-    });
+  log({ actor, text, type, value }) {
+    const id = this.logId++;
+    const logItem = { id, actor, text, type, value };
+    this.battleLog.unshift(logItem);
+    if (this.battleLog.length > 10) this.battleLog.splice(10);
   },
-  special() {
-    this.process(() => {
-      console.log('special');
-    });
+  async attack() {
+    const yourDmg = rand(2, 9);
+    this.them = clamp(this.them - yourDmg);
+    this.log({ actor: 'you', text: 'attacked for', type: 'damage', value: yourDmg });
+    await wait(500);
+    const theirDmg = rand(5, 15);
+    this.you = clamp(this.you - theirDmg);
+    this.log({ actor: 'they', text: 'retaliated for', type: 'damage', value: theirDmg });
+
   },
-  heal() {
-    this.process(() => {
-      console.log('heal');
-    });
+  async special() {
+    if (Math.random() > 0.5) {
+      const yourDmg = rand(10, 20);
+      this.them = clamp(this.them - yourDmg);
+      this.log({ actor: 'you', text: 'succeeded and dealt', type: 'damage', value: yourDmg });
+    } else {
+      const theirDmg = rand(5, 15);
+      this.you = clamp(this.you - theirDmg);
+      this.log({ actor: 'they', text: 'dodged and slapped back for', type: 'damage', value: theirDmg });
+    }
+    await wait(500);
+  },
+  async heal() {
+    const yourHp = rand(5, 10);
+    this.you = clamp(this.you + yourHp);
+    this.log({ actor: 'you', text: 'healed for', type: 'health', value: yourHp });
+    await wait(500);
+    const theirHp = rand(6, 9);
+    this.them = clamp(this.them + theirHp);
+    this.log({ actor: 'they', text: 'sat back and gained', type: 'health', value: theirHp });
   },
   run() {
-    this.process(() => {
-      console.log('run');
-    });
+    this.you = 0;
+    this.log({ actor: 'you', text: 'ran like a coward' });
   },
 };
 
-const app = Vue.createApp({ data, computed, methods });
+const app = Vue.createApp({ data, watch, computed, methods });
 
 app.mount("#game");
