@@ -8,4 +8,6 @@ Vue.JS development projects
 ### 03 Conditional Content
 - v-for, v-if, v-else, v-show
 ### 04 Project: Game
-- tbd
+- monster slayer game putting Vue practices into practice
+### 05 Life Cycles
+- demo of all Vue life cycle methods
