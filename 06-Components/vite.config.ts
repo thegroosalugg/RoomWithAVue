@@ -10,7 +10,6 @@ export default defineConfig({
     vue(),
     vueDevTools(),
   ],
-
   server: {
     host: true, // remember to add this for port forwarding (5173)
   },

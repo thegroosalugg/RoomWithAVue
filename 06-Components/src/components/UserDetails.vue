@@ -1,7 +1,7 @@
 <template>
   <li class="box">
     <h2>{{ user.name }}</h2>
-    <button class="button" @click="toggleDetails">{{ isVisible ? "Hide" : "Show" }} Details</button>
+    <button class="button" @click="toggleDetails">{{ isVisible ? 'Hide' : 'Show' }} Details</button>
     <ul v-if="isVisible">
       <li>
         <strong>Phone:</strong>
@@ -39,19 +39,19 @@
 </script> -->
 
 <script setup lang="ts">
-  import type { User } from "@/models/User";
-  import { ref } from "vue";
+  import type { User } from '@/models/User'
+  import { ref } from 'vue'
 
   // how to add props to components in Vue
-  const props = defineProps<{ user: User; caseCheck: string }>();
+  const props = defineProps<{ user: User; caseCheck: string }>()
 
-  console.log(props.caseCheck); // props only need to be saved as const if used within <script setup>
+  console.log(props.caseCheck) // props only need to be saved as const if used within <script setup>
 
   // ref creates reactive state tracked by Vue; updates to .value trigger template re-renders
-  const isVisible = ref(false);
+  const isVisible = ref(false)
 
   function toggleDetails() {
-    isVisible.value = !isVisible.value;
+    isVisible.value = !isVisible.value
   }
 </script>
 

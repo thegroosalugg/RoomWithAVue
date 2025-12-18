@@ -21,7 +21,7 @@
 
 <script setup lang="ts">
   // local component scoping
-  import UserDetails from "./components/UserDetails.vue";
+  import UserDetails from './components/UserDetails.vue'
 </script>
 
 <style scoped>
