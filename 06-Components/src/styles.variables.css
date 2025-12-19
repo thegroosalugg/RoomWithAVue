@@ -1,4 +1,13 @@
 :root {
+  /* custom - various */
+  --transition: 0.5s ease;
+  --border: 1px solid;
+  --margin: 1rem auto;
+  --padding-xs: 0.125rem 0.25rem;
+  --padding-sm:  0.25rem  0.5rem;
+  --padding-md:   0.5rem    1rem;
+  --padding-lg:     1rem    2rem;
+
   /* border-radius */
   --rounded-xs:  0.125rem;
   --rounded-sm:  0.25rem;
@@ -87,7 +96,7 @@
 }
 
 .box {
-  padding: var(--padding);
+  padding: var(--padding-md);
   border: var(--border);
   border-radius: var(--rounded-md);
   background-color: var(--box);
@@ -99,7 +108,7 @@
   --background: var(--accent);
   --color: var(--page);
   --shadow: var(--shadow--pop);
-  padding: var(--padding);
+  padding: var(--padding-sm);
   border: var(--border) var(--border-color);
   border-radius: var(--rounded-lg);
   background-color: var(--background);

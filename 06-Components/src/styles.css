@@ -7,16 +7,11 @@
   --soft:    var(--stone-600);
   --accent:  var(--sky-600);   /* accent/support: brand colors */
   --support: var(--teal-600);
-  --transparent: #ffffff00;
-  --border: 1px solid;
-  --margin: 1rem auto;
-  --padding: 0.25rem 0.5rem;
-  --transition: 0.5s ease;
-
   --info:    var(--violet-600);
   --warning: var(--amber-400);
   --success: var(--lime-600);
   --danger:  var(--rust-600);
+  --transparent: #ffffff00;
 
   --font-major: "Montserrat", serif;
   --font-minor: "Lato", sans-serif;
@@ -28,12 +23,11 @@
     --soft:    var(--stone-300);
     --accent:  var(--sky-400);
     --support: var(--teal-400);
-    --transparent: #00000000;
-
     --info:    var(--violet-400);
     --warning: var(--amber-300);
     --success: var(--lime-400);
     --danger:  var(--rust-400);
+    --transparent: #00000000;
   }
 }
 
