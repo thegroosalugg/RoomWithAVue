@@ -2,7 +2,9 @@
   <!-- use $emit('event-name', payloadData) for small, direct payloads. Reference a function in <script> when working with greater logic -->
   <li class="box" @click="$emit('select', user.id)">
     <h2>{{ user.name }}</h2>
-    <button class="button" @click.stop="toggleDetails">{{ isVisible ? 'Hide' : 'Show' }} Details</button>
+    <button class="button" @click.stop="toggleDetails">
+      {{ isVisible ? 'Hide' : 'Show' }} Details
+    </button>
     <ul v-if="isVisible">
       <li>
         <strong>Phone:</strong>
@@ -16,32 +18,9 @@
   </li>
 </template>
 
-<!-- Options API: taught in course; uses data/methods/computed/watch() { is a configuration object }: Vue consumes it. -->
-<!-- Composition API: Replaces Options API; original syntax:
-<script>
-  import { ref } from 'vue'
-
-  export default {
-    setup() {
-      const count = ref(0)
-
-      function increment() {
-        count.value++
-      }
-
-      return { count, increment }
-    }
-  }
-</script>
-** ^^^ Must return everything the template needs -->
-<!-- Modern Composition API (new default)
-<script setup>
-  Modern Default: removes export default { setup() { return ... } } boilerplate
-</script> -->
-
 <script setup lang="ts">
-  import type { User } from '@/models/User'
   import { ref } from 'vue'
+  import User from '@/models/User'
 
   // how to add props to components in Vue
   // const props = defineProps<{ user: User; caseCheck: string }>()

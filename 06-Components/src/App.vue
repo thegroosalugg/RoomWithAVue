@@ -2,12 +2,23 @@
   <header class="box">
     <h1>Users</h1>
   </header>
-  <UserList />
+  <AddUser @submit="onSubmit" />
+  <UserList :users="users" />
 </template>
 
 <script setup lang="ts">
+  import { ref } from 'vue'
+  import { USERS } from '@/api/users'
+  import User from '@/models/User'
   // local component scoping
+  import AddUser from './components/AddUser.vue'
   import UserList from './components/UserList.vue'
+
+  const users = ref<User[]>(USERS)
+
+  function onSubmit(user: User) {
+    users.value.unshift(user)
+  }
 </script>
 
 <style scoped>

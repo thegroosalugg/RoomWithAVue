@@ -39,11 +39,11 @@
 *, *::before, *::after { box-sizing: border-box; }
 *                      { margin: 0;  padding: 0; }
 
-input, textarea, select          { outline: none; border-radius: 0; }
-a                                { text-decoration: none;           }
-ul, ol                           {      list-style: none;           }
-img, picture, video, canvas, svg {         display: block;          }
-button                           {          cursor: pointer;        }
+input, textarea, select          { outline: none; border: none; }
+a                                { text-decoration:       none; }
+ul, ol                           {      list-style:       none; }
+img, picture, video, canvas, svg {         display:      block; }
+button                           {          cursor:    pointer; }
 
 a, p, h1, h2, h3, h4, h5, h6, button, label, input, textarea, select, option {
   overflow-wrap: break-word;
