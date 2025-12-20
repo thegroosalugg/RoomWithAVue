@@ -14,6 +14,12 @@ Vue.JS development projects
 - demo of all Vue life cycle methods
 ### 06 Components
 - 06+ uses Composition API script setup
+- props & emits:
+  - const dataProps = ref<type>(value)
+  - withDefaults(defineProps<{types}>(), { default: value })
+  - defineEmits<{ (e: 'event', payload: any): void }>(); @click="$emit('event', payload)"; @event="handleEvent"
+- provide & inject
+  -
 #### Additional Config when installing Vue with Prettier
 ##### package.json
 - scripts
