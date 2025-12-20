@@ -23,7 +23,7 @@
 
 <script setup lang="ts">
   import { ref } from 'vue'
-  import User from '@/models/User'
+  import type User from '@/models/User'
 
   // how to add props to components in Vue
   // const props = defineProps<{ user: User; caseCheck: string }>()

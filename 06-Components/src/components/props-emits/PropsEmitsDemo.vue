@@ -6,10 +6,10 @@
 <script setup lang="ts">
   import { ref } from 'vue'
   import { USERS } from '@/api/users'
-  import User from '@/models/User'
   // local component scoping
   import AddUser from './AddUser.vue'
   import UserList from './UserList.vue'
+  import type User from '@/models/User'
 
   const users = ref<User[]>(USERS)
 

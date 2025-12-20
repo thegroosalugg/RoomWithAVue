@@ -30,8 +30,8 @@
 </template>
 
 <script setup lang="ts">
-  import User from '@/models/User'
   import UserItem from './UserItem.vue'
+  import type User from '@/models/User'
 
   defineProps<{ users: User[] }>()
   // like (output) in Angular - emits data to parent component

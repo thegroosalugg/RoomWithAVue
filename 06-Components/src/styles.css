@@ -4,7 +4,7 @@
   --page:    var(--stone-200); /* page/box: background surfaces */
   --box:     var(--stone-100);
   --text:    var(--stone-900); /* text/soft: typography */
-  --soft:    var(--stone-600);
+  --soft:    var(--stone-500);
   --accent:  var(--sky-600);   /* accent/support: brand colors */
   --support: var(--teal-600);
   --info:    var(--violet-600);
@@ -20,7 +20,7 @@
     --page:    var(--stone-800);
     --box:     var(--stone-700);
     --text:    var(--stone-100);
-    --soft:    var(--stone-300);
+    --soft:    var(--stone-400);
     --accent:  var(--sky-400);
     --support: var(--teal-400);
     --info:    var(--violet-400);
