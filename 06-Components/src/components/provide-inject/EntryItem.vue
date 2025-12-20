@@ -8,14 +8,17 @@
 
 <script setup lang="ts">
   import type Entry from '@/models/Entry'
-  import { inject } from 'vue'
+  import { useEntries } from './useEntries';
+  // import { inject } from 'vue'
+  // import { entriesContext, entriesKey } from './useEntries'
 
   defineProps<{ entry: Entry }>()
 
-  // consume injected function
-  const { setActiveEntry } = inject<{ setActiveEntry: (id: string) => void }>('entries', {
-    setActiveEntry: () => {},
-  })
+  // **consume injected function
+  // const { setActiveEntry } = inject(entriesKey, entriesContext)
+
+  // **  React pattern; inject context values with custom hook
+  const { setActiveEntry } = useEntries()
 </script>
 
 <style scoped>

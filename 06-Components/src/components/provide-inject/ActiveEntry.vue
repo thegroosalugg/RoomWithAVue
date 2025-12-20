@@ -6,9 +6,9 @@
 </template>
 
 <script setup lang="ts">
-  import type Entry from '@/models/Entry'
+  import { useEntries } from './useEntries'
 
-  defineProps<{ entry: Entry | null }>()
+  const { activeEntry: entry } = useEntries()
 </script>
 
 <style scoped>
