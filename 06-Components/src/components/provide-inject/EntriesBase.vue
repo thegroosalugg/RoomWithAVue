@@ -1,16 +1,13 @@
 <template>
   <section class="box">
     <h2>Select a Topic</h2>
-    <EntriesGrid :entries="entries" @select="$emit('select', $event)" />
+    <EntriesGrid />
   </section>
 </template>
 
+<!-- Dummy Component to create Grandparent > Parent > Child relationship -->
 <script setup lang="ts">
   import EntriesGrid from './EntriesGrid.vue'
-  import type Entry from '@/models/Entry'
-
-  defineProps<{ entries: Entry[] }>()
-  defineEmits<{ (e: 'select', entryId: string): void }>()
 </script>
 
 <style scoped>
