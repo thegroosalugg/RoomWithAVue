@@ -19,25 +19,27 @@
 
 <template>
   <ul>
+    <!-- $emit payload data directly; @selected: emitted event from <UserItem> -->
     <UserItem
       v-for="user in users"
       :key="user.id"
       :user="user"
-      @select="handleSelect"
+      @selected="$emit('delete', user.id)"
     />
   </ul>
 </template>
 
 <script setup lang="ts">
-  import { ref } from 'vue'
   import User from '@/models/User'
   import UserItem from './UserItem.vue'
 
   defineProps<{ users: User[] }>()
-  const selectedUser = ref<string | null>(null)
+  // like (output) in Angular - emits data to parent component
+  defineEmits<{ (e: 'delete', userId: string): void }>()
+  // **example: when event needs greater logic, save emit as const, and call inside a function
+  // const emit = defineEmits<{ (e: 'delete', userId: string): void }>()
 
-  function handleSelect(userId: string) {
-    selectedUser.value = userId
-    console.log('Selected user:', userId)
-  }
+  // function clickHandler(userId: string) {
+  //   emit('delete', userId)
+  // }
 </script>

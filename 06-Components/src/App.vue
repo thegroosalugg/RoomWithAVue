@@ -3,7 +3,7 @@
     <h1>Users</h1>
   </header>
   <AddUser @submit="onSubmit" />
-  <UserList :users="users" />
+  <UserList :users="users" @delete="deleteUser" />
 </template>
 
 <script setup lang="ts">
@@ -18,6 +18,10 @@
 
   function onSubmit(user: User) {
     users.value.unshift(user)
+  }
+
+  function deleteUser(userId: string) {
+    users.value = users.value.filter(({ id }) => id !== userId)
   }
 </script>
 

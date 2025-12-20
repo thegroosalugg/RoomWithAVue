@@ -1,6 +1,5 @@
 <template>
-  <!-- use $emit('event-name', payloadData) for small, direct payloads. Reference a function in <script> when working with greater logic -->
-  <li class="box" @click="$emit('select', user.id)">
+  <li class="box">
     <h2>{{ user.name }}</h2>
     <button class="button" @click.stop="toggleDetails">
       {{ isVisible ? 'Hide' : 'Show' }} Details
@@ -15,6 +14,10 @@
         {{ user.email }}
       </li>
     </ul>
+    <!-- use $emit('event-name', payloadData) for small, direct payloads. Reference a function in <script> when working with greater logic -->
+    <button v-if="isVisible" class="button delete" @click="$emit('selected')">
+      Delete
+    </button>
   </li>
 </template>
 
@@ -31,15 +34,7 @@
 
   console.log(props.caseCheck) // props only need to be saved as const if used within <script setup>
 
-  // like (output) in Angular - emits data to parent component
-  // const emit = defineEmits<{ (e: 'select', userId: string): void }>()
-
-  // function clickHandler() {
-  //   emit('select', props.user.id)
-  // }
-
-  // no need to define functions if working with small payloads
-  defineEmits<{ (e: 'select', userId: string): void }>()
+  defineEmits<{ (e: 'selected'): void }>()
 
   // ref creates reactive state tracked by Vue; updates to .value trigger template re-renders
   const isVisible = ref(false)
@@ -56,11 +51,19 @@
     width: 90%;
     max-width: 40rem;
   }
-
   h2 {
     font-size: var(--text-3xl);
     border-bottom: 4px solid var(--support);
     color: var(--accent);
     margin: 0 0 1rem 0;
+  }
+  .delete {
+    background-color: var(--danger);
+
+    &:hover {
+      background-color: var(--page);
+      border-color: var(--danger);
+      color: var(--danger);
+    }
   }
 </style>
