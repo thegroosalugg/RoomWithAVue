@@ -32,13 +32,14 @@
 </script>
 
 <style scoped>
+  /* modals are ephemereal and plentiful - they will be created/destroyed */
   .backdrop {
     --opacity: 0.75;
     position: fixed;
     z-index: 10;
     inset: 0;
     width: 100%;
-    min-height: 100vh; /* inset + MIN-height -> prevents on-zoom backdrop waterfall */
+    height: 100vh; /* inset + height -> prevents on-zoom backdrop waterfall */
     background-color: rgba(0, 0, 0, var(--opacity));
     cursor: pointer;
     transition: background-color 0.3s ease;
