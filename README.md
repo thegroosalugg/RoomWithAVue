@@ -19,9 +19,11 @@ Vue.JS development projects
   - withDefaults(defineProps<{types}>(), { default: value })
   - defineEmits<{ (e: 'event', payload: any): void }>(); @click="$emit('event', payload)"; @event="handleEvent"
 - provide & inject
-  -
-#### Additional Config when installing Vue with Prettier
-##### package.json
+  - provide('key', value) -- provide('key', { value, function }) -- provide(InjectionKey, value)
+  - inject&lt;T&gt;('key', defaultValue) -- inject(InjectionKey)
+
+### Additional Config when installing Vue with Prettier
+#### package.json
 - scripts
   - "format": "prettier --write --experimental-cli src/"
 - packages
@@ -29,12 +31,12 @@ Vue.JS development projects
     - adds skipFormatting to esling.config.ts - ensures they don't conflict over formatting
   - "prettier": "3.6.2",
     - same version for whole team
-##### esling.config.ts
+#### esling.config.ts
 - import skipFormatting from '@vue/eslint-config-prettier/skip-formatting'
 - export default defineConfigWithVueTs(
   skipFormatting,
 )
-##### .prettierrc.json
+#### .prettierrc.json
 - {
   "$schema": "https://json.schemastore.org/prettierrc",
   "semi": false,
@@ -42,8 +44,8 @@ Vue.JS development projects
   "printWidth": 100,
   "vueIndentScriptAndStyle": true
 }
-#### Additional dependencies can be skipped when using VSCode Prettier
-##### .editorconfig
+### Additional dependencies can be skipped when using VSCode Prettier
+#### .editorconfig
 - this file will prevent VSCode prettier from working
 - [*.{js,jsx,mjs,cjs,ts,tsx,mts,cts,vue,css,scss,sass,less,styl}]
   - remove vue (and any others with conflicting settings) from the array

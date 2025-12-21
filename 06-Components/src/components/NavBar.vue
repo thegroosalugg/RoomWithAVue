@@ -3,6 +3,7 @@
     <nav>
       <button @click="$emit('selected', 0)">Props & Emits</button>
       <button @click="$emit('selected', 1)">Provide & Inject</button>
+      <button @click="$emit('selected', 2)">Slots</button>
     </nav>
   </header>
 </template>
@@ -18,10 +19,10 @@
   }
   nav {
     display: flex;
+    justify-content: space-evenly;
     gap: 1rem;
   }
   button {
-    min-width: 120px;
     border: none;
     background: none;
     color: var(--page);
