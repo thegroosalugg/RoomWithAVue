@@ -22,17 +22,19 @@
 </template>
 
 <script setup lang="ts">
-  import { ref } from 'vue'
+  import { ref, onMounted } from 'vue'
   import type User from '@/models/User'
 
   // how to add props to components in Vue
   // const props = defineProps<{ user: User; caseCheck: string }>()
   // when setting default values, defineProps is wrapped in another function
   const props = withDefaults(defineProps<{ user: User; caseCheck?: string }>(), {
-    caseCheck: 'this is a default Value',
+    caseCheck: 'UserItem.vue: this is a default Value',
   })
 
-  console.log(props.caseCheck) // props only need to be saved as const if used within <script setup>
+  onMounted(() => {
+    console.log(props.caseCheck) // props only need to be saved as const if used within <script setup>
+  })
 
   defineEmits<{ (e: 'selected'): void }>()
 

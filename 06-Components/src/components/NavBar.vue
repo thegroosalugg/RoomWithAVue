@@ -1,15 +1,24 @@
 <template>
   <header>
     <nav>
-      <button @click="$emit('selected', 0)">Props & Emits</button>
-      <button @click="$emit('selected', 1)">Provide & Inject</button>
-      <button @click="$emit('selected', 2)">Slots</button>
+      <button
+        v-for="(tab, i) in tabs"
+        :key="tab"
+        :class="{ underline: activeTab === i }"
+        @click="$emit('selected', i)"
+      >
+        {{ tab }}
+      </button>
     </nav>
   </header>
 </template>
 
+
 <script setup lang="ts">
+  defineProps<{ activeTab: number }>()
   defineEmits<{ (e: 'selected', index: number): void }>()
+
+  const tabs = ['Props & Emits', 'Provide & Inject', 'Slots']
 </script>
 
 <style scoped>
@@ -19,7 +28,6 @@
   }
   nav {
     display: flex;
-    justify-content: space-evenly;
     gap: 1rem;
   }
   button {
