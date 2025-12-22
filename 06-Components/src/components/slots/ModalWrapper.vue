@@ -1,11 +1,3 @@
-<!-- you can have multiple slots; add a name prop to each slot beyond the first; bind to template with v-slot -->
-<!--
-<slot name="content-type" />
-<template v-slot="content-type">
-  <your-content />
-</template>
--->
-
 <template>
   <div v-if="isOpen" class="backdrop" @click="handleClose" :data-closing="isClosing" />
   <dialog :open="isOpen" :data-closing="isClosing">
