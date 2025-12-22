@@ -21,6 +21,13 @@ Vue.JS development projects
 - provide & inject
   - provide('key', value) -- provide('key', { value, function }) -- provide(InjectionKey, value)
   - inject&lt;T&gt;('key', defaultValue) -- inject(InjectionKey)
+- slots
+  - multi-slots (v-slot="name" | #name)
+  - slot props (#default="props")
+- components
+  - &lt;component :is="MyComponent"&gt;
+  - &lt;KeepAlive&gt; &lt;MyComponent&gt; &lt;KeepAlive&gt;
+  - &lt;teleport&gt; &lt;MyComponent&gt; &lt;teleport&gt;
 
 ### Additional Config when installing Vue with Prettier
 #### package.json

@@ -1,9 +1,13 @@
 <template>
-  <div v-if="isOpen" class="backdrop" @click="handleClose" :data-closing="isClosing" />
-  <dialog :open="isOpen" :data-closing="isClosing">
-    <!-- <slot> === { children } (React) | <ng-content> (Angular) -->
-    <slot />
-  </dialog>
+  <!-- teleport: (React: createPortal) reference an HTML element, class or ID -->
+  <teleport to="body">
+    <div v-if="isOpen" class="backdrop" @click="handleClose" :data-closing="isClosing" />
+    <!-- using :open=boolean keeps <dialog> in the DOM always. As this component is re-usable, this could build up -->
+    <dialog v-if="isOpen" open :data-closing="isClosing">
+      <!-- <slot> === { children } (React) | <ng-content> (Angular) -->
+      <slot />
+    </dialog>
+  </teleport>
 </template>
 
 <script setup lang="ts">
