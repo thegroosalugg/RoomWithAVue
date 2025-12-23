@@ -11,21 +11,16 @@
   import { ref, watch } from 'vue'
   // local component scoping
   import NavBar from './components/NavBar.vue'
-  import PropsEmitsDemo from './components/props-emits/PropsEmitsDemo.vue'
-  import ProvideInjectDemo from './components/provide-inject/ProvideInjectDemo.vue'
-  import SlotsDemo from './components/slots/SlotsDemo.vue'
+  import DemoPropsEmits from './components/props-emits/DemoPropsEmits.vue'
+  import DemoProvideInject from './components/provide-inject/DemoProvideInject.vue'
+  import DemoSlots from './components/slots/DemoSlots.vue'
+  import DemoForm from './components/forms/DemoForm.vue'
 
-  const views = [
-    PropsEmitsDemo,
-    ProvideInjectDemo,
-    SlotsDemo,
-  ]
+  const views = [DemoPropsEmits, DemoProvideInject, DemoSlots, DemoForm]
 
   const STORAGE_KEY = 'activeTab'
 
-  const activeTab = ref(
-    Number(localStorage.getItem(STORAGE_KEY)) || 0,
-  )
+  const activeTab = ref(Number(localStorage.getItem(STORAGE_KEY)) || 0)
 
   function setActiveTab(index: number) {
     activeTab.value = index

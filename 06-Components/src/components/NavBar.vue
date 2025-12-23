@@ -18,7 +18,7 @@
   defineProps<{ activeTab: number }>()
   defineEmits<{ (e: 'selected', index: number): void }>()
 
-  const tabs = ['Props & Emits', 'Provide & Inject', 'Slots']
+  const tabs = ['Props & Emits', 'Provide & Inject', 'Slots', 'Forms']
 </script>
 
 <style scoped>
@@ -37,6 +37,6 @@
     font-weight: 500;
     transition: var(--transition);
 
-    &:hover { font-weight: 700; }
+    &:hover { text-shadow: var(--text-shadow-lg); }
   }
 </style>
