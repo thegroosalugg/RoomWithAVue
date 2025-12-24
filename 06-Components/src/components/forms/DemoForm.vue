@@ -8,7 +8,6 @@
       <input
                    id="input-text"
                 class="box"
-                 name="input-text"
          v-model.trim="form.text"
                 @blur="validateField('text')"
         :aria-invalid="validators.textInvalid"
@@ -20,7 +19,6 @@
       <input
                    id="input-number"
                 class="box"
-                 name="input-number"
                  type="number"
               v-model="form.number"
                 @blur="validateField('number')"
@@ -32,7 +30,6 @@
       <select
                    id="select-options"
                 class="box"
-                 name="select-options"
               v-model="form.options"
         :aria-invalid="validators.optionsInvalid"
       >
@@ -41,13 +38,14 @@
         <option value="raiden">Raiden</option>
       </select>
     </div>
+    <!-- Custom Component using v-model: Single - v-model="modelValue"; Multi - v-model:name="modelValue" -->
+    <DateRangePicker v-model:control="form.date" v-model:error="validators.dateInvalid" />
     <div class="control">
       <h2>Checkboxes</h2>
       <!-- Checkboxes and Radio buttons require value prop -->
       <div class="control-row">
         <input
                id="checkbox-one"
-             name="checkbox-group"
             value="ration"
              type="checkbox"
           v-model="form.checkboxes"
@@ -57,17 +55,15 @@
       <div class="control-row">
         <input
                id="checkbox-two"
-             name="checkbox-group"
-            value="carboard-box"
+            value="cardboard-box"
              type="checkbox"
           v-model="form.checkboxes"
         />
-        <label for="checkbox-two">Carboard Box</label>
+        <label for="checkbox-two">Cardboard Box</label>
       </div>
       <div class="control-row">
         <input
                id="checkbox-three"
-             name="checkbox-group"
             value="cigar"
              type="checkbox"
           v-model="form.checkboxes"
@@ -83,15 +79,15 @@
     >
       <h2>Radio Buttons</h2>
       <div class="control-row">
-        <input id="radio-one" name="radio-group" value="tanker" type="radio" v-model="form.radio" />
+        <input id="radio-one" value="tanker" type="radio" v-model="form.radio" />
         <label for="radio-one">Tanker</label>
       </div>
       <div class="control-row">
-        <input id="radio-two" name="radio-group" value="plant" type="radio" v-model="form.radio" />
+        <input id="radio-two" value="plant" type="radio" v-model="form.radio" />
         <label for="radio-two">Plant</label>
       </div>
       <div class="control-row">
-        <input id="radio-three" name="radio-group" value="dremuchij" type="radio" v-model="form.radio" />
+        <input id="radio-three" value="dremuchij" type="radio" v-model="form.radio" />
         <label for="radio-three">Dremuchij</label>
       </div>
     </div>
@@ -101,7 +97,6 @@
     >
       <input
                    id="checkbox-solo"
-                 name="checkbox-solo"
                  type="checkbox"
               v-model="form.checkbox"
         :aria-invalid="validators.checkboxInvalid"
@@ -114,6 +109,7 @@
 
 <script setup lang="ts">
   import { ref } from 'vue'
+  import DateRangePicker from './DateRangePicker.vue';
 
   const formGroup = {
           text: '',
@@ -122,6 +118,7 @@
     checkboxes: [],
          radio: '',
       checkbox: false,
+          date: { start: '', end: '' }
   }
 
   const validatorGroup = {
@@ -130,6 +127,7 @@
      optionsInvalid: false,
        radioInvalid: false,
     checkboxInvalid: false,
+        dateInvalid: false,
   }
 
   const form = ref({ ...formGroup }) // v-model <input> values
@@ -146,10 +144,15 @@
     validators.value[validateKey] = !form.value[field]
   }
 
+  function validateDate() {
+    const { start, end } = form.value.date
+    validators.value.dateInvalid = !start || !end
+  }
+
   function isInvalid() {
-    const { textInvalid, numberInvalid, optionsInvalid, radioInvalid, checkboxInvalid } =
+    const { textInvalid, numberInvalid, optionsInvalid, radioInvalid, checkboxInvalid, dateInvalid } =
       validators.value
-    return textInvalid || numberInvalid || optionsInvalid || radioInvalid || checkboxInvalid
+    return textInvalid || numberInvalid || optionsInvalid || radioInvalid || checkboxInvalid || dateInvalid
   }
 
   function resetForm() {
@@ -166,6 +169,7 @@
     validateField('options')
     validateField('radio')
     validateField('checkbox')
+    validateDate()
     log('VALIDATORS', validators.value)
     if (isInvalid()) {
       isSubmitting.value = false

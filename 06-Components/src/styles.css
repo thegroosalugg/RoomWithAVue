@@ -10,7 +10,7 @@
   --info:    var(--violet-600);
   --warning: var(--amber-400);
   --success: var(--lime-600);
-  --danger:  var(--rust-600);
+  --danger:  var(--rust-500);
   --transparent: #ffffff00;
 
   --font-major: "Montserrat", serif;
@@ -36,8 +36,8 @@
 }
 
 /* <CSSReset> */
-*, *::before, *::after { box-sizing: border-box; } /* scrollbar: firefox */
-* { margin: 0; padding: 0; scrollbar-width: thin; scrollbar-color: var(--text) transparent; }
+*, *::before, *::after { box-sizing: border-box; }
+*                      { margin: 0; padding: 0;  }
 
 input, textarea, select          { outline: none; border: none; }
 a                                { text-decoration:       none; }
@@ -51,12 +51,17 @@ a, p, h1, h2, h3, h4, h5, h6, button, label, input, textarea, select, option {
           color: inherit;
 }
 
+input[type='number']::-webkit-inner-spin-button { -webkit-appearance: none; }
+input[type='number'] { appearance: textfield; -moz-appearance: textfield; }
+
 ::-webkit-scrollbar       { width: 1px; height: 1px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--text); border-radius: 5px; }
 
-input[type='number']::-webkit-inner-spin-button { -webkit-appearance: none; }
-input[type='number'] { appearance: textfield; -moz-appearance: textfield; }
+@supports (scrollbar-color: auto) and (not selector(::-webkit-scrollbar)) {
+  * { scrollbar-width: thin; scrollbar-color: var(--text) transparent; }
+}
+
 /* </CSSReset> */
 
 body {
