@@ -44,8 +44,7 @@
   .date-range {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
-    padding: 0.5rem;
+    gap: 1rem;
   }
   .control {
     display: flex;

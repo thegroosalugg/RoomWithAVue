@@ -3,7 +3,9 @@
   <!-- KeepAlive: preserves component statel; can only accept one child; cannot have a comment in its bounds -->
   <!-- <component :is="allows you to dynamically inject a component from the <script>" /> -->
   <KeepAlive>
-    <component :is="views[activeTab]" />
+    <main id="main">
+      <component :is="views[activeTab]" />
+    </main>
   </KeepAlive>
 </template>
 

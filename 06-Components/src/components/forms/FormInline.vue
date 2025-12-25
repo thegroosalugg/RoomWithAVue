@@ -1,7 +1,8 @@
 <template>
   <!-- preventDefault() -->
   <form @submit.prevent="submitForm">
-    <FormControl htmlFor="input-text" label="Text Input" :error="validators.textInvalid">
+    <div :class="['control', 'bold', { invalid: validators.textInvalid }]">
+      <label for="input-text">Text Input</label>
       <!-- v-model has built in functions to convert input: lazy | number | trim -->
       <!-- @blur: validate input before form submitted -->
       <input
@@ -11,8 +12,9 @@
                 @blur="validateField('text')"
         :aria-invalid="validators.textInvalid"
       />
-    </FormControl>
-    <FormControl htmlFor="input-number" label="Number Input" :error="validators.numberInvalid">
+    </div>
+    <div :class="['control', 'bold', { invalid: validators.numberInvalid }]">
+      <label for="input-number">Number Input</label>
       <!-- v-model converts type=number to number when retrieved -->
       <input
                    id="input-number"
@@ -22,8 +24,9 @@
                 @blur="validateField('number')"
         :aria-invalid="validators.numberInvalid"
       />
-    </FormControl>
-    <FormControl htmlFor="select-options" label="Select Options" :error="validators.optionsInvalid">
+    </div>
+    <div :class="['control', 'bold', { invalid: validators.optionsInvalid }]">
+      <label for="select-options">Select Options</label>
       <select
                    id="select-options"
                 class="box"
@@ -34,68 +37,78 @@
         <option value="otacon">Otacon</option>
         <option value="raiden">Raiden</option>
       </select>
-    </FormControl>
+    </div>
     <!-- Custom Component using v-model: Single - v-model="modelValue"; Multi - v-model:name="modelValue" -->
     <DateRangePicker v-model:control="form.date" v-model:error="validators.dateInvalid" />
-    <FormControl label="Checkboxes">
+    <div class="control">
+      <h2>Checkboxes</h2>
       <!-- Checkboxes and Radio buttons require value prop -->
-       <FormControl row htmlFor="checkbox-1" label="Ration">
-         <input
-                id="checkbox-1"
-             value="ration"
-              type="checkbox"
-           v-model="form.checkboxes"
-         />
-       </FormControl>
-       <FormControl row htmlFor="checkbox-2" label="Cardboard Box">
-         <input
-                id="checkbox-2"
-             value="cardboard-box"
-              type="checkbox"
-           v-model="form.checkboxes"
-         />
-       </FormControl>
-       <FormControl row htmlFor="checkbox-3" label="Cigar">
-         <input
-                id="checkbox-3"
-             value="cigar"
-              type="checkbox"
-           v-model="form.checkboxes"
-         />
-       </FormControl>
-      </FormControl>
-    <FormControl
-                label="Radio Buttons"
-               :error="validators.radioInvalid"
+      <div class="control-row">
+        <input
+               id="checkbox-one"
+            value="ration"
+             type="checkbox"
+          v-model="form.checkboxes"
+        />
+        <label for="checkbox-one">Ration</label>
+      </div>
+      <div class="control-row">
+        <input
+               id="checkbox-two"
+            value="cardboard-box"
+             type="checkbox"
+          v-model="form.checkboxes"
+        />
+        <label for="checkbox-two">Cardboard Box</label>
+      </div>
+      <div class="control-row">
+        <input
+               id="checkbox-three"
+            value="cigar"
+             type="checkbox"
+          v-model="form.checkboxes"
+        />
+        <label for="checkbox-three">Cigar</label>
+      </div>
+    </div>
+    <div
+               :class="['control', { invalid: validators.radioInvalid }]"
                  role="radiogroup"
       aria-labelledby="radio-label"
         :aria-invalid="validators.radioInvalid"
     >
-      <FormControl row htmlFor="radio-1" label="Tanker">
-        <input id="radio-1" value="tanker" type="radio" v-model="form.radio" />
-      </FormControl>
-      <FormControl row htmlFor="radio-2" label="Plant">
-        <input id="radio-2" value="plant" type="radio" v-model="form.radio" />
-      </FormControl>
-      <FormControl row htmlFor="radio-3" label="Dremuchij South">
-        <input id="radio-3" value="dremuchij" type="radio" v-model="form.radio" />
-      </FormControl>
-    </FormControl>
-    <FormControl row htmlFor="checkbox-solo" label="Confirmation box" :error="validators.checkboxInvalid">
+      <h2>Radio Buttons</h2>
+      <div class="control-row">
+        <input id="radio-one" value="tanker" type="radio" v-model="form.radio" />
+        <label for="radio-one">Tanker</label>
+      </div>
+      <div class="control-row">
+        <input id="radio-two" value="plant" type="radio" v-model="form.radio" />
+        <label for="radio-two">Plant</label>
+      </div>
+      <div class="control-row">
+        <input id="radio-three" value="dremuchij" type="radio" v-model="form.radio" />
+        <label for="radio-three">Dremuchij</label>
+      </div>
+    </div>
+    <div
+      :class="['control-row', { invalid: validators.checkboxInvalid }]"
+      :style="{ margin: '0 0.5rem' }"
+    >
       <input
-             id="checkbox-solo"
-           type="checkbox"
-        v-model="form.checkbox"
+                   id="checkbox-solo"
+                 type="checkbox"
+              v-model="form.checkbox"
         :aria-invalid="validators.checkboxInvalid"
       />
-    </FormControl>
+      <label for="checkbox-solo">Confirmation box</label>
+    </div>
     <button class="button" :disabled="isSubmitting">Save</button>
   </form>
 </template>
 
 <script setup lang="ts">
   import { ref } from 'vue'
-  import FormControl from './FormControl.vue';
   import DateRangePicker from './DateRangePicker.vue';
 
   const formGroup = {
@@ -173,17 +186,35 @@
     --background: var(--stone-50);
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 0.5rem;
     width: 90%;
     max-width: 480px;
     margin: var(--margin);
-    padding: 1rem;
+    padding: 0.5rem;
     border: var(--border);
     border-radius: var(--rounded-md);
     background-color: var(--background);
 
     @media (prefers-color-scheme: dark) { --background: stone-950; }
   }
-  .box   { padding: var(--padding-sm); } /* Global Class Override | <input> */
-  button { align-self: end; }
+  .control {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+    transition: color var(--transition);
+
+    &.bold label {
+      font-weight: 700;
+      margin-left: 0.25rem;
+    }
+  }
+  .control-row {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+  .invalid { color: var(--danger); }
+  .box     { padding: var(--padding-sm); } /* Global Class Override */
+  h2       { font-weight: 700; }
+  button   { align-self: end;  }
 </style>

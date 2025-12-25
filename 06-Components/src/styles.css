@@ -77,3 +77,7 @@ body {
   flex-direction: column;
   min-height: 100dvh; /* content fits between browser UI elements */
 }
+
+#main {
+  flex: 1;
+}

@@ -31,6 +31,7 @@
     flex-direction: column;
     gap: 0.5rem;
     margin: var(--margin);
+    max-width: 300px;
   }
   button { align-self: flex-end; }
 </style>

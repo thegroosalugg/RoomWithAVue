@@ -1,6 +1,17 @@
 # RoomWithAVue
 Vue.JS development projects
 
+## Reminder:
+- public.robots.txt
+  -User-agent: *
+  - Disallow:
+- index.html:
+  - lang="end"
+  - < meta name="description" content="Vue App" >
+- vite.config.ts
+  - when port fowarding add:
+    - server: { host: true },
+
 ### 01 Intro
 - basic Vue.Js set up with CDN (Content Delivery Network) import
 - 01-05 use Options API Setup
@@ -28,6 +39,7 @@ Vue.JS development projects
   - &lt;component :is="MyComponent"&gt;
   - &lt;KeepAlive&gt; &lt;MyComponent&gt; &lt;KeepAlive&gt;
   - &lt;teleport&gt; &lt;MyComponent&gt; &lt;teleport&gt;
+- forms (v-model)
 
 ### Additional Config when installing Vue with Prettier
 #### package.json
