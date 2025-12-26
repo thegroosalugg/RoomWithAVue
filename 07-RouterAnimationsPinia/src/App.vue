@@ -1,11 +1,21 @@
-<script setup lang="ts"></script>
-
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <AppNavbar @resize="offsetHeight = $event" />
+  <main :style="{ marginTop: offsetHeight + 'px' }">
+    <RouterView />
+  </main>
+  <AppFooter />
 </template>
 
-<style scoped></style>
+<script setup lang="ts">
+  import { ref } from 'vue'
+  import AppNavbar from './layouts/AppNavbar.vue'
+  import AppFooter from './layouts/AppFooter.vue';
+
+  const offsetHeight = ref(0)
+</script>
+
+<style scoped>
+  main {
+    flex: 1;
+  }
+</style>

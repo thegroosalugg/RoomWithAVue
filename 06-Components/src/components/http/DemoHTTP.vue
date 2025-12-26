@@ -33,7 +33,7 @@
   }
 </script>
 
-<style lang="css" scoped>
+<style scoped>
   h2 {
     font-size: var(--text-3xl);
     text-align: center;

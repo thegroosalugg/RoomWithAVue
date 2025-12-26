@@ -5,9 +5,9 @@
   --box:     var(--stone-100);
   --text:    var(--stone-900); /* text/soft: typography */
   --soft:    var(--stone-500);
-  --accent:  var(--sky-600);   /* accent/support: brand colors */
+  --accent:  var(--emerald-600);   /* accent/support: brand colors */
   --support: var(--teal-600);
-  --info:    var(--violet-600);
+  --info:    var(--violet-500);
   --warning: var(--amber-400);
   --success: var(--lime-600);
   --danger:  var(--rust-500);
@@ -20,9 +20,9 @@
     --page:    var(--stone-800);
     --box:     var(--stone-700);
     --text:    var(--stone-100);
-    --soft:    var(--stone-400);
-    --accent:  var(--sky-400);
-    --support: var(--teal-400);
+    --soft:    var(--stone-300);
+    --accent:  var(--emerald-500);
+    --support: var(--teal-500);
     --info:    var(--violet-400);
     --warning: var(--amber-300);
     --success: var(--lime-400);
@@ -52,7 +52,7 @@ a, p, h1, h2, h3, h4, h5, h6, button, label, input, textarea, select, option {
 }
 
 input[type='number']::-webkit-inner-spin-button { -webkit-appearance: none; }
-input[type='number'] { appearance: textfield; -moz-appearance: textfield; }
+input[type='number'] { appearance: textfield;   -moz-appearance: textfield; }
 
 ::-webkit-scrollbar       { width: 1px; height: 1px; }
 ::-webkit-scrollbar-track { background: transparent; }
@@ -61,7 +61,6 @@ input[type='number'] { appearance: textfield; -moz-appearance: textfield; }
 @supports (scrollbar-color: auto) and (not selector(::-webkit-scrollbar)) {
   * { scrollbar-width: thin; scrollbar-color: var(--text) transparent; }
 }
-
 /* </CSSReset> */
 
 body {
@@ -76,8 +75,4 @@ body {
   display: flex; /* Flex set on first available wrapper around header/main/footer */
   flex-direction: column;
   min-height: 100dvh; /* content fits between browser UI elements */
-}
-
-#main {
-  flex: 1;
 }

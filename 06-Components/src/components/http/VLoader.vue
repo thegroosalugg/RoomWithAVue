@@ -11,7 +11,7 @@
   defineProps<{ size?: 'xs' | 'sm'; color?: 'page' | 'white' }>()
 </script>
 
-<style lang="css" scoped>
+<style scoped>
   .loader {
     --size-wrapper: 80px;
     --size-spinner: 64px;
