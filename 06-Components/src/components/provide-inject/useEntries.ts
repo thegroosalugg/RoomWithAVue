@@ -2,7 +2,7 @@
 import { inject, provide, ref, type Ref } from 'vue'
 import type { InjectionKey } from 'vue'
 import type Entry from '@/models/Entry'
-import { ENTRIES } from '@/api/entries'; // dummy data
+import { ENTRIES } from '@/data/entries'; // dummy data
 
 interface EntriesContext {
          entries: Ref<Entry[]>

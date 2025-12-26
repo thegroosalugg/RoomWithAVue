@@ -52,7 +52,7 @@
   import ModalWrapper from './ModalWrapper.vue'
   import SideBar from './SideBar.vue'
   import SearchList from './SearchList.vue'
-  import { USERS } from '@/api/users'
+  import { USERS } from '@/data/users'
 
   const modalIsOpen = ref(false)
   const sidebarIsOpen = ref(false)

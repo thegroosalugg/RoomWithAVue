@@ -17,8 +17,9 @@
   import DemoProvideInject from './components/provide-inject/DemoProvideInject.vue'
   import DemoSlots from './components/slots/DemoSlots.vue'
   import DemoForm from './components/forms/DemoForm.vue'
+  import DemoHTTP from './components/http/DemoHTTP.vue';
 
-  const views = [DemoPropsEmits, DemoProvideInject, DemoSlots, DemoForm]
+  const views = [DemoPropsEmits, DemoProvideInject, DemoSlots, DemoForm, DemoHTTP]
 
   const STORAGE_KEY = 'activeTab'
 

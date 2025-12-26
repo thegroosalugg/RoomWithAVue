@@ -5,7 +5,7 @@
 
 <script setup lang="ts">
   import { ref } from 'vue'
-  import { USERS } from '@/api/users'
+  import { USERS } from '@/data/users'
   // local component scoping
   import AddUser from './AddUser.vue'
   import UserList from './UserList.vue'

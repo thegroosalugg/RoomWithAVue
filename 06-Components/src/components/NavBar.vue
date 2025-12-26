@@ -18,7 +18,7 @@
   defineProps<{ activeTab: number }>()
   defineEmits<{ (e: 'selected', index: number): void }>()
 
-  const tabs = ['Props & Emits', 'Provide & Inject', 'Slots', 'Forms']
+  const tabs = ['Props & Emits', 'Provide & Inject', 'Slots', 'Forms', 'HTTP']
 </script>
 
 <style scoped>

@@ -40,6 +40,9 @@ Vue.JS development projects
   - &lt;KeepAlive&gt; &lt;MyComponent&gt; &lt;KeepAlive&gt;
   - &lt;teleport&gt; &lt;MyComponent&gt; &lt;teleport&gt;
 - forms (v-model)
+- HTTP Requests
+  - with dummy Python Flask server
+  - created re-usable fetch function and composable
 
 ### Additional Config when installing Vue with Prettier
 #### package.json
