@@ -20,7 +20,7 @@
 <template>
   <ul>
     <!-- $emit payload data directly; @selected: emitted event from <UserItem> -->
-    <UserItem
+    <UserListItem
       v-for="user in users"
       :key="user.id"
       :user="user"
@@ -30,7 +30,7 @@
 </template>
 
 <script setup lang="ts">
-  import UserItem from './UserItem.vue'
+  import UserListItem from './UserListItem.vue'
   import type User from '@/models/User'
 
   defineProps<{ users: User[] }>()

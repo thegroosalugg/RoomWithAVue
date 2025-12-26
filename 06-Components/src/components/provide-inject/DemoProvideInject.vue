@@ -1,11 +1,11 @@
 <template>
   <EntriesBase />
-  <ActiveEntry />
+  <EntryDetail />
 </template>
 
 <script setup lang="ts">
   // import { ref } from 'vue'
-  import ActiveEntry from './ActiveEntry.vue'
+  import EntryDetail from './EntryDetail.vue'
   import EntriesBase from './EntriesBase.vue'
   // import { ENTRIES } from '@/api/entries'
   // import type Entry from '@/models/Entry'

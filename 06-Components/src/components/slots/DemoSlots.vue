@@ -1,10 +1,10 @@
 <template>
   <!-- ** SLOTS -->
-  <ModalWrapper :isOpen="modalIsOpen" :onClose="closeModal">
+  <VModal :isOpen="modalIsOpen" :onClose="closeModal">
     <div id="modal-content">Modal Content</div>
-  </ModalWrapper>
+  </VModal>
   <!--** MULTI SLOTS -->
-  <SideBar :isOpen="sidebarIsOpen" :onRight="sideBarIsOnRight" :onClose="closeSideBar">
+  <AppSidebar :isOpen="sidebarIsOpen" :onRight="sideBarIsOnRight" :onClose="closeSideBar">
     <!-- v-slot:slot-name === #slot-name (shorthand) -->
     <template #header>
       <nav>
@@ -22,7 +22,7 @@
     <ul>
       <li v-for="num in 100" :key="num" class="box">{{ num }}</li>
     </ul>
-  </SideBar>
+  </AppSidebar>
   <!--** Generic Page Controls -->
   <nav>
     <button class="button" @click="openModal">Open Modal</button>
@@ -30,8 +30,8 @@
     <button class="button" @click="toggleSideBarPosition">SideBar Left-Right</button>
   </nav>
   <!-- ** SLOT PROPS (React: Render Props) -->
-  <!-- #default: access to main slot, with multi-slots, or slots with props. Can be set on <SearchList #default="props"> when only 1 used slot -->
-  <SearchList :items="users" searchKey="name">
+  <!-- #default: access to main slot, with multi-slots, or slots with props. Can be set on <VSearchList #default="props"> when only 1 used slot -->
+  <VSearchList :items="users" searchKey="name">
     <template #default="{ item, query }">
       <p v-if="query">Matched for: {{ query }}</p>
       <article class="box">
@@ -44,14 +44,14 @@
       <p>SlotsDemo.vue, no matches for</p>
       <p>{{ query }}</p>
     </template>
-  </SearchList>
+  </VSearchList>
 </template>
 
 <script setup lang="ts">
   import { ref } from 'vue'
-  import ModalWrapper from './ModalWrapper.vue'
-  import SideBar from './SideBar.vue'
-  import SearchList from './SearchList.vue'
+  import VModal from './VModal.vue'
+  import AppSidebar from './AppSidebar.vue'
+  import VSearchList from './VSearchList.vue'
   import { USERS } from '@/data/users'
 
   const modalIsOpen = ref(false)

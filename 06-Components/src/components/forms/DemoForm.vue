@@ -1,7 +1,7 @@
 <template>
   <!-- preventDefault() -->
   <form @submit.prevent="submitForm">
-    <FormControl htmlFor="input-text" label="Text Input" :error="validators.textInvalid">
+    <VFormControl htmlFor="input-text" label="Text Input" :error="validators.textInvalid">
       <!-- v-model has built in functions to convert input: lazy | number | trim -->
       <!-- @blur: validate input before form submitted -->
       <input
@@ -11,8 +11,8 @@
                 @blur="validateField('text')"
         :aria-invalid="validators.textInvalid"
       />
-    </FormControl>
-    <FormControl htmlFor="input-number" label="Number Input" :error="validators.numberInvalid">
+    </VFormControl>
+    <VFormControl htmlFor="input-number" label="Number Input" :error="validators.numberInvalid">
       <!-- v-model converts type=number to number when retrieved -->
       <input
                    id="input-number"
@@ -22,8 +22,8 @@
                 @blur="validateField('number')"
         :aria-invalid="validators.numberInvalid"
       />
-    </FormControl>
-    <FormControl htmlFor="select-options" label="Select Options" :error="validators.optionsInvalid">
+    </VFormControl>
+    <VFormControl htmlFor="select-options" label="Select Options" :error="validators.optionsInvalid">
       <select
                    id="select-options"
                 class="box"
@@ -34,69 +34,69 @@
         <option value="otacon">Otacon</option>
         <option value="raiden">Raiden</option>
       </select>
-    </FormControl>
+    </VFormControl>
     <!-- Custom Component using v-model: Single - v-model="modelValue"; Multi - v-model:name="modelValue" -->
-    <DateRangePicker v-model:control="form.date" v-model:error="validators.dateInvalid" />
-    <FormControl label="Checkboxes">
+    <VDateRangePicker v-model:control="form.date" v-model:error="validators.dateInvalid" />
+    <VFormControl label="Checkboxes">
       <!-- Checkboxes and Radio buttons require value prop -->
-       <FormControl row htmlFor="checkbox-1" label="Ration">
+       <VFormControl row htmlFor="checkbox-1" label="Ration">
          <input
                 id="checkbox-1"
              value="ration"
               type="checkbox"
            v-model="form.checkboxes"
          />
-       </FormControl>
-       <FormControl row htmlFor="checkbox-2" label="Cardboard Box">
+       </VFormControl>
+       <VFormControl row htmlFor="checkbox-2" label="Cardboard Box">
          <input
                 id="checkbox-2"
              value="cardboard-box"
               type="checkbox"
            v-model="form.checkboxes"
          />
-       </FormControl>
-       <FormControl row htmlFor="checkbox-3" label="Cigar">
+       </VFormControl>
+       <VFormControl row htmlFor="checkbox-3" label="Cigar">
          <input
                 id="checkbox-3"
              value="cigar"
               type="checkbox"
            v-model="form.checkboxes"
          />
-       </FormControl>
-      </FormControl>
-    <FormControl
+       </VFormControl>
+      </VFormControl>
+    <VFormControl
                 label="Radio Buttons"
                :error="validators.radioInvalid"
                  role="radiogroup"
       aria-labelledby="radio-label"
         :aria-invalid="validators.radioInvalid"
     >
-      <FormControl row htmlFor="radio-1" label="Tanker">
+      <VFormControl row htmlFor="radio-1" label="Tanker">
         <input id="radio-1" value="tanker" type="radio" v-model="form.radio" />
-      </FormControl>
-      <FormControl row htmlFor="radio-2" label="Plant">
+      </VFormControl>
+      <VFormControl row htmlFor="radio-2" label="Plant">
         <input id="radio-2" value="plant" type="radio" v-model="form.radio" />
-      </FormControl>
-      <FormControl row htmlFor="radio-3" label="Dremuchij South">
+      </VFormControl>
+      <VFormControl row htmlFor="radio-3" label="Dremuchij South">
         <input id="radio-3" value="dremuchij" type="radio" v-model="form.radio" />
-      </FormControl>
-    </FormControl>
-    <FormControl row htmlFor="checkbox-solo" label="Confirmation box" :error="validators.checkboxInvalid">
+      </VFormControl>
+    </VFormControl>
+    <VFormControl row htmlFor="checkbox-solo" label="Confirmation box" :error="validators.checkboxInvalid">
       <input
              id="checkbox-solo"
            type="checkbox"
         v-model="form.checkbox"
         :aria-invalid="validators.checkboxInvalid"
       />
-    </FormControl>
+    </VFormControl>
     <button class="button" :disabled="isSubmitting">Save</button>
   </form>
 </template>
 
 <script setup lang="ts">
   import { ref } from 'vue'
-  import FormControl from './FormControl.vue';
-  import DateRangePicker from './DateRangePicker.vue';
+  import VFormControl from './VFormControl.vue';
+  import VDateRangePicker from './VDateRangePicker.vue';
 
   const formGroup = {
           text: '',

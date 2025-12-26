@@ -39,7 +39,7 @@
       </select>
     </div>
     <!-- Custom Component using v-model: Single - v-model="modelValue"; Multi - v-model:name="modelValue" -->
-    <DateRangePicker v-model:control="form.date" v-model:error="validators.dateInvalid" />
+    <VDateRangePicker v-model:control="form.date" v-model:error="validators.dateInvalid" />
     <div class="control">
       <h2>Checkboxes</h2>
       <!-- Checkboxes and Radio buttons require value prop -->
@@ -109,7 +109,7 @@
 
 <script setup lang="ts">
   import { ref } from 'vue'
-  import DateRangePicker from './DateRangePicker.vue';
+  import VDateRangePicker from './VDateRangePicker.vue';
 
   const formGroup = {
           text: '',

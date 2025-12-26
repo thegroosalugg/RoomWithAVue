@@ -1,5 +1,5 @@
 <template>
-  <AddUser @submit="onSubmit" />
+  <UserFormCreate @submit="onSubmit" />
   <UserList :users="users" @delete="deleteUser" />
 </template>
 
@@ -7,7 +7,7 @@
   import { ref } from 'vue'
   import { USERS } from '@/data/users'
   // local component scoping
-  import AddUser from './AddUser.vue'
+  import UserFormCreate from './UserFormCreate.vue'
   import UserList from './UserList.vue'
   import type User from '@/models/User'
 

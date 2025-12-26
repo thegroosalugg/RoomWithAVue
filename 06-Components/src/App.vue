@@ -1,23 +1,23 @@
 <template>
-  <NavBar :activeTab="activeTab" @selected="setActiveTab" />
-  <!-- KeepAlive: preserves component statel; can only accept one child; cannot have a comment in its bounds -->
+  <AppNavBar :activeTab="activeTab" @selected="setActiveTab" />
   <!-- <component :is="allows you to dynamically inject a component from the <script>" /> -->
-  <KeepAlive>
-    <main id="main">
+  <!-- KeepAlive: preserves component statel; can only accept one child; cannot have a comment in its bounds -->
+  <main id="main">
+    <KeepAlive>
       <component :is="views[activeTab]" />
-    </main>
-  </KeepAlive>
+    </KeepAlive>
+  </main>
 </template>
 
 <script setup lang="ts">
   import { ref, watch } from 'vue'
   // local component scoping
-  import NavBar from './components/NavBar.vue'
+  import AppNavBar from './components/AppNavBar.vue'
   import DemoPropsEmits from './components/props-emits/DemoPropsEmits.vue'
   import DemoProvideInject from './components/provide-inject/DemoProvideInject.vue'
   import DemoSlots from './components/slots/DemoSlots.vue'
   import DemoForm from './components/forms/DemoForm.vue'
-  import DemoHTTP from './components/http/DemoHTTP.vue';
+  import DemoHTTP from './components/http/DemoHTTP.vue'
 
   const views = [DemoPropsEmits, DemoProvideInject, DemoSlots, DemoForm, DemoHTTP]
 

@@ -1,6 +1,6 @@
 <template>
   <ul>
-    <EntryItem
+    <EntryGridItem
       v-for="entry in entries"
       :key="entry.id"
       :entry="entry"
@@ -10,7 +10,7 @@
 
 <script setup lang="ts">
   // import { inject } from 'vue'
-  import EntryItem from './EntryItem.vue'
+  import EntryGridItem from './EntryGridItem.vue'
   import { useEntries } from './useEntries';
   // import type Entry from '@/models/Entry'
   // import { entriesContext, entriesKey } from './useEntries';
