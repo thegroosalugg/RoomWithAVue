@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+:root {
+  --page:    var(--stone-200); /* page/box: background surfaces */
+  --box:     var(--stone-100);
+  --text:    var(--stone-900); /* text/soft: typography */
+  --soft:    var(--stone-500);
+  --accent:  var(--sky-600);   /* accent/support: brand colors */
+  --support: var(--teal-600);
+  --info:    var(--violet-600);
+  --warning: var(--amber-400);
+  --success: var(--lime-600);
+  --danger:  var(--rust-500);
+  --transparent: #ffffff00;
+
+  --font-major: "Montserrat", serif;
+  --font-minor: "Lato", sans-serif;
+
+  @media (prefers-color-scheme: dark) {
+    --page:    var(--stone-800);
+    --box:     var(--stone-700);
+    --text:    var(--stone-100);
+    --soft:    var(--stone-400);
+    --accent:  var(--sky-400);
+    --support: var(--teal-400);
+    --info:    var(--violet-400);
+    --warning: var(--amber-300);
+    --success: var(--lime-400);
+    --danger:  var(--rust-400);
+    --transparent: #00000000;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  html { color-scheme: dark; }
+}
+
+/* <CSSReset> */
+*, *::before, *::after { box-sizing: border-box; }
+*                      { margin: 0; padding: 0;  }
+
+input, textarea, select          { outline: none; border: none; }
+a                                { text-decoration:       none; }
+ul, ol                           {      list-style:       none; }
+img, picture, video, canvas, svg {         display:      block; }
+button                           {          cursor:    pointer; }
+
+a, p, h1, h2, h3, h4, h5, h6, button, label, input, textarea, select, option {
+  overflow-wrap: break-word;
+           font: inherit;
+          color: inherit;
+}
+
+input[type='number']::-webkit-inner-spin-button { -webkit-appearance: none; }
+input[type='number'] { appearance: textfield; -moz-appearance: textfield; }
+
+::-webkit-scrollbar       { width: 1px; height: 1px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--text); border-radius: 5px; }
+
+@supports (scrollbar-color: auto) and (not selector(::-webkit-scrollbar)) {
+  * { scrollbar-width: thin; scrollbar-color: var(--text) transparent; }
+}
+
+/* </CSSReset> */
+
+body {
+  min-height: 100vh; /* overlays stretch to screen height */
+  line-height: 1.2;
+  color: var(--text);
+  background: var(--page);
+  font-family: var(--font-major);
+}
+
+#app {
+  display: flex; /* Flex set on first available wrapper around header/main/footer */
+  flex-direction: column;
+  min-height: 100dvh; /* content fits between browser UI elements */
+}
+
+#main {
+  flex: 1;
+}
