@@ -6,11 +6,15 @@ Vue.JS development projects
   -User-agent: *
   - Disallow:
 - index.html:
-  - lang="end"
+  - lang="en"
   - < meta name="description" content="Vue App" >
 - vite.config.ts
   - when port fowarding add:
     - server: { host: true },
+- .gitignore
+  - # Env
+    - .env
+    - .env.local
 
 ### 01 Intro
 - basic Vue.Js set up with CDN (Content Delivery Network) import
