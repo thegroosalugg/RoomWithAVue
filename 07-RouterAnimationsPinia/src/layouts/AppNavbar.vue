@@ -67,9 +67,9 @@
     position: fixed;
     z-index: 10;
     display: flex;
-    gap: 1rem;
     align-items: center;
     justify-content: space-between;
+    gap: 1rem;
     width: 100%;
     padding: 1rem;
     overflow-x: auto;

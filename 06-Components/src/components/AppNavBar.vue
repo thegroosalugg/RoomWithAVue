@@ -23,8 +23,16 @@
 
 <style scoped>
   header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
     padding: 1rem;
     background-color: var(--accent);
+    overflow-x: scroll;
+    width: 100%;
+
+    &::-webkit-scrollbar-thumb { background: var(--page); }
   }
   nav {
     display: flex;

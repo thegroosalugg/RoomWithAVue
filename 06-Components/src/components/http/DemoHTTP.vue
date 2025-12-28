@@ -1,22 +1,20 @@
 <template>
-  <div>
-    <h2>HTTP Demo</h2>
-    <section>
-      <button class="button" @click="reqAll({ url: 'all' })">Fetch Array</button>
-      <button class="button" @click="reqOne({ url: 'one', onSuccess })">Fetch Object</button>
-    </section>
-    <VLoader v-if="loadingAll" />
-    <ul v-else>
-      <li v-if="loadingOne">
-        <VLoader size="sm" color="white" />
-      </li>
-      <li v-for="({ id, name, email, phone }) in users" :key="id" class="box">
-        <h3>{{ name }}</h3>
-        <p>{{ email }}</p>
-        <p>{{ phone }}</p>
-      </li>
-    </ul>
-  </div>
+  <h2>HTTP Demo</h2>
+  <section>
+    <button class="button" @click="reqAll({ url: 'all' })">Fetch Array</button>
+    <button class="button" @click="reqOne({ url: 'one', onSuccess })">Fetch Object</button>
+  </section>
+  <VLoader v-if="loadingAll" />
+  <ul v-else>
+    <li v-if="loadingOne">
+      <VLoader size="sm" color="white" />
+    </li>
+    <li v-for="({ id, name, email, phone }) in users" :key="id" class="box">
+      <h3>{{ name }}</h3>
+      <p>{{ email }}</p>
+      <p>{{ phone }}</p>
+    </li>
+  </ul>
 </template>
 
 <script setup lang="ts">
@@ -49,6 +47,7 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    width: 95%;
     max-width: var(--screen-sm);
     margin: var(--margin);
     padding: 1rem;
