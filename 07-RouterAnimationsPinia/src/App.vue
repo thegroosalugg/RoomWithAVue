@@ -9,7 +9,7 @@
 <script setup lang="ts">
   import { ref } from 'vue'
   import AppNavbar from './layouts/AppNavbar.vue'
-  import AppFooter from './layouts/AppFooter.vue';
+  import AppFooter from './layouts/AppFooter.vue'
 
   const offsetHeight = ref(0)
 </script>

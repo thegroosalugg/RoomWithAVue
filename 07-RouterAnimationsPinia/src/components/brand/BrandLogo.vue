@@ -21,16 +21,15 @@
 </template>
 
 <script setup lang="ts">
-  import type { CssColor, RootColor } from '@/lib/types/colors';
+  import type { Color } from '@/lib/types/colors';
 
-  withDefaults(defineProps<{ color?: RootColor | CssColor; responsive?: boolean }>(), { color: 'accent' })
+  withDefaults(defineProps<{ color?: Color; responsive?: boolean }>(), { color: 'accent' })
 </script>
 
 <style scoped>
   .brand-wrapper {
     display: flex;
     align-items: center;
-    margin: 0 auto;
     gap: 0.125rem;
     /* color: var(--accent); */
   }

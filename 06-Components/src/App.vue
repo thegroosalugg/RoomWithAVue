@@ -2,7 +2,7 @@
   <AppNavBar :activeTab="activeTab" @selected="setActiveTab" />
   <!-- <component :is="allows you to dynamically inject a component from the <script>" /> -->
   <!-- KeepAlive: preserves component statel; can only accept one child; cannot have a comment in its bounds -->
-  <main id="main">
+  <main>
     <KeepAlive>
       <component :is="views[activeTab]" />
     </KeepAlive>
@@ -33,3 +33,9 @@
     localStorage.setItem(STORAGE_KEY, String(value))
   })
 </script>
+
+<style scoped>
+  main {
+    flex: 1;
+  }
+</style>

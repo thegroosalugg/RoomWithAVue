@@ -21,3 +21,5 @@ export type RootColor =
   | 'warning'
   | 'danger'
   | 'success';
+
+export type Color = CssColor | RootColor

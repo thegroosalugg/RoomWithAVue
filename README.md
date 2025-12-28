@@ -2,8 +2,8 @@
 Vue.JS development projects
 
 ## Reminder:
-- public.robots.txt
-  -User-agent: *
+- public/robots.txt
+  - User-agent: *
   - Disallow:
 - index.html:
   - lang="en"
@@ -12,9 +12,8 @@ Vue.JS development projects
   - when port fowarding add:
     - server: { host: true },
 - .gitignore
-  - # Env
-    - .env
-    - .env.local
+  - .env
+  - .env.local
 
 ### 01 Intro
 - basic Vue.Js set up with CDN (Content Delivery Network) import
@@ -47,6 +46,14 @@ Vue.JS development projects
 - HTTP Requests
   - with dummy Python Flask server
   - created re-usable fetch function and composable
+### 07 Router, Animations, Pinia
+#### Router
+- { '/route', component: MyComponent, alias: '/routesFromThisPathToo' }
+- { '/route/:dynamic', component: MyComponent, props: true }
+- { '/:catchAll(.*)', component: NotFound }
+- useRoute(): current route object; useRouter(): current router instance
+- .router-link-active | .router-link-exact-active
+- beforeEnter, beforeUpdate, beforeLeave, onBeforeRouteUpdate, onBeforeRouteLeave
 
 ### Additional Config when installing Vue with Prettier
 #### package.json

@@ -8,9 +8,10 @@
       <BrandLogo responsive />
       <!-- Update Nav Links -->
       <nav>
-        <a href="/">LinkOne</a>
-        <a href="/">LinkTwo</a>
-        <a href="/">LinkThree</a>
+        <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/router">Router</RouterLink>
+        <RouterLink to="/animations">Animations</RouterLink>
+        <RouterLink to="/pinia">Pinia</RouterLink>
       </nav>
     </div>
     <div class="content-center">
@@ -25,6 +26,7 @@
 
 <script setup lang="ts">
   import { ref, onMounted, onUnmounted } from 'vue'
+  import { RouterLink } from 'vue-router';
   import BrandLogo from '@/components/brand/BrandLogo.vue';
 
   const emit = defineEmits<{(e: 'resize', height: number): void }>()
@@ -78,9 +80,7 @@
 
     &.visible { transform: translateY(0); }
 
-    @media (min-width: 1024px) {
-      padding: 1.5rem;
-    }
+    @media (min-width: 1024px) { padding: 1.5rem; }
   }
 
   /* 3 elements visible at 1 time: nav-bar/center/right | left/navbar/right */
@@ -94,13 +94,17 @@
     align-items: center;
     gap: 0.5rem;
 
+    :first-child { /* center brand logo when nav not visible */
+      margin: 0 auto;
+
+      @media (min-width: 768px) { margin: 0; }
+    }
+
     nav {
       display: none;
       gap: 0.5rem;
 
-      @media (min-width: 768px) {
-        display: flex;
-      }
+      @media (min-width: 768px) { display: flex; }
 
       a {
         transition: var(--transition);
@@ -124,7 +128,7 @@
 
   .content-right {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
   }
 
   button {
@@ -133,7 +137,7 @@
     padding: 0.25rem;
     border: var(--border);
     border-radius: var(--rounded-sm);
-    color: var(--soft);
+    color: var(--accent);
     background-color: var(--box);
   }
 </style>
