@@ -91,12 +91,36 @@
     </VFormControl>
     <button class="button" :disabled="isSubmitting">Save</button>
   </form>
+  <VModal ref="modalRef">
+    <ul>
+      <li v-for="(value, key, index) in form" :key="key">
+        <p>({{ index }})</p>
+        <p>{{ key }}:</p>
+        <p>{{ value || 'undefined' }}</p>
+      </li>
+      <li>
+        <button class="button" @click="closeModal">Close</button>
+      </li>
+    </ul>
+  </VModal>
 </template>
 
 <script setup lang="ts">
   import { ref } from 'vue'
   import VFormControl from './VFormControl.vue';
   import VDateRangePicker from './VDateRangePicker.vue';
+  import VModal, { type VModalMethods } from '../slots/VModal.vue';
+
+  const modalRef = ref<VModalMethods>()
+
+  function openModal() {
+    modalRef.value?.open()
+  }
+
+  function closeModal() {
+    modalRef.value?.close()
+    resetForm()
+  }
 
   const formGroup = {
           text: '',
@@ -163,8 +187,8 @@
       return
     }
     console.log('SUCCESS!')
-    resetForm()
     isSubmitting.value = false
+    openModal()
   }
 </script>
 
@@ -185,5 +209,28 @@
     @media (prefers-color-scheme: dark) { --background: var(--stone-950); }
   }
   .box   { padding: var(--padding-sm); } /* Global Class Override | <input> */
-  button { align-self: end; }
+  button { margin-left: auto; grid-column: 3; }
+  ul {
+    width: 100%;
+    padding: 1rem;
+    border-radius: var(--rounded-md);
+    background-color: var(--outer);
+  }
+  li {
+    display: grid;
+    grid-template-columns: 25px 100px 1fr;
+    align-items: center;
+
+    &:has(button) { margin-top: 0.5rem; }
+
+    p {
+      &:nth-of-type(1) { min-width: 25px; text-wrap: nowrap; }
+      &:nth-of-type(3) {
+        margin-left: 0.5rem;
+        padding: var(--padding-xs);
+        background-color: var(--box);
+        text-align: end;
+      }
+    }
+  }
 </style>

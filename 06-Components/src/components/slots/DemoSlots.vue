@@ -1,6 +1,6 @@
 <template>
   <!-- ** SLOTS -->
-  <VModal :isOpen="modalIsOpen" :onClose="closeModal">
+  <VModal ref="modalRef">
     <div id="modal-content">Modal Content</div>
   </VModal>
   <!--** MULTI SLOTS -->
@@ -48,24 +48,20 @@
 
 <script setup lang="ts">
   import { computed, ref } from 'vue'
-  import VModal from './VModal.vue'
+  import VModal, { type VModalMethods } from './VModal.vue'
   import AppSidebar from './AppSidebar.vue'
   import VSearchList from './VSearchList.vue'
   import VScrollDummy from '../VScrollDummy.vue';
   import { USERS } from '@/data/users'
 
-  const modalIsOpen = ref(false)
+  const modalRef = ref<VModalMethods>()
   const sidebarIsOpen = ref(false)
   const sideBarIsOnRight = ref(false)
 
   const users = ref(USERS)
 
   function openModal() {
-    modalIsOpen.value = true
-  }
-
-  function closeModal() {
-    modalIsOpen.value = false
+    modalRef.value?.open()
   }
 
   function openSideBar() {
