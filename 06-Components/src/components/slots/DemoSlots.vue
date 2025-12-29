@@ -16,11 +16,7 @@
         </section>
       </nav>
     </template>
-    <ul>
-      <li v-for="num in 50" :key="num" class="box" :style="{ width: 40 + num * 2 + 'px' }">
-        {{ num }}
-      </li>
-    </ul>
+    <VScrollDummy color="fuchsia-500" :elements="35" />
   </AppSidebar>
   <!--** Generic Page Controls -->
   <nav style="justify-content: center; align-items: stretch; overflow-x: scroll;">
@@ -54,6 +50,7 @@
   import VModal from './VModal.vue'
   import AppSidebar from './AppSidebar.vue'
   import VSearchList from './VSearchList.vue'
+  import VScrollDummy from '../VScrollDummy.vue';
   import { USERS } from '@/data/users'
 
   const modalIsOpen = ref(false)
@@ -118,21 +115,6 @@
   .square {
     min-width: 44px;
     height: 44px;
-  }
-  ul {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    height: 100%;
-    padding: 1rem;
-    overflow-y: scroll;
-    background-color: var(--box);
-    color: var(--support);
-    text-align: center;
-  }
-  li {
-    max-width: 100%;
   }
   /* Parent scoped styles can also style the First Wrapper of a Child Component (Careful when selecting DOM elements specifically with children) */
   .search-list {

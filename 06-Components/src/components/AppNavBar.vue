@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header ref="headerRef">
     <nav>
       <button
         v-for="(tab, i) in tabs"
@@ -15,10 +15,27 @@
 
 
 <script setup lang="ts">
+  import { useDOMTracker } from '@/lib/composables/useDOMTracker';
+  import { onMounted, onUnmounted, ref } from 'vue';
+
+  const tabs = ['Props & Emits', 'Provide & Inject', 'Slots', 'Forms', 'HTTP']
+
   defineProps<{ activeTab: number }>()
   defineEmits<{ (e: 'selected', index: number): void }>()
 
-  const tabs = ['Props & Emits', 'Provide & Inject', 'Slots', 'Forms', 'HTTP']
+  // register element to DOM service for tracking size
+  const { register, deregister } = useDOMTracker()
+  const headerRef = ref<HTMLElement | null>(null)
+
+  onMounted(() => {
+    if (headerRef.value) {
+      register('nav-header', headerRef.value)
+    }
+  })
+
+  onUnmounted(() => {
+    deregister('nav-header')
+  })
 </script>
 
 <style scoped>

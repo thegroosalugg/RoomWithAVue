@@ -182,7 +182,7 @@
     border-radius: var(--rounded-md);
     background-color: var(--background);
 
-    @media (prefers-color-scheme: dark) { --background: stone-950; }
+    @media (prefers-color-scheme: dark) { --background: var(--stone-950); }
   }
   .box   { padding: var(--padding-sm); } /* Global Class Override | <input> */
   button { align-self: end; }

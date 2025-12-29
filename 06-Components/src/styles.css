@@ -16,6 +16,11 @@
   --font-major: "Montserrat", serif;
   --font-minor: "Lato", sans-serif;
 
+  /* give containers seperate BGs for layout testing */
+  --outer: var(--emerald-300);
+  --inner: var(--amber-300);
+  --element: var(--rose-300);
+
   @media (prefers-color-scheme: dark) {
     --page:    var(--stone-800);
     --box:     var(--stone-700);
@@ -28,6 +33,10 @@
     --success: var(--lime-400);
     --danger:  var(--rust-400);
     --transparent: #00000000;
+
+    --outer: var(--gray-950);
+    --inner: var(--steel-950);
+    --element: var(--sky-950);
   }
 }
 
@@ -75,4 +84,5 @@ body {
   display: flex; /* Flex set on first available wrapper around header/main/footer */
   flex-direction: column;
   min-height: 100dvh; /* content fits between browser UI elements */
+  background: var(--outer);
 }

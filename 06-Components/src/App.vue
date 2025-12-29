@@ -18,6 +18,9 @@
   import DemoSlots from './components/slots/DemoSlots.vue'
   import DemoForm from './components/forms/DemoForm.vue'
   import DemoHTTP from './components/http/DemoHTTP.vue'
+  import { provideDOMTracker } from './lib/composables/useDOMTracker';
+
+  provideDOMTracker() // register and observe any DOM element
 
   const views = [DemoPropsEmits, DemoProvideInject, DemoSlots, DemoForm, DemoHTTP]
 
@@ -37,5 +40,8 @@
 <style scoped>
   main {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: var(--inner);
   }
 </style>
