@@ -74,5 +74,26 @@ body {
 #app {
   display: flex; /* Flex set on first available wrapper around header/main/footer */
   flex-direction: column;
-  min-height: 100dvh; /* content fits between browser UI elements */
+  min-height: 100svh; /* content fits between browser UI elements */
+}
+
+/* # disabled for toggle class testing */
+/* # changes display for mobiles. Fixes dvh re-calculation lag on Chrome/Edge. Must set flex-shrink: 0 on headers/footers */
+/* @media (pointer: coarse) {
+  body, #app { min-height: auto; }
+  body { position: fixed;   inset: 0;    }
+  #app { height: 100dvh; overflow: auto; }
+} */
+
+/* # Layout Testing: toggle in app on the fly */
+body.fixed-layout {
+  min-height: auto;
+  position: fixed;
+  inset: 0;
+}
+
+body.fixed-layout #app {
+  min-height: auto;
+  height: 100dvh;
+  overflow: auto;
 }

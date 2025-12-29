@@ -27,6 +27,7 @@
 
 <style scoped>
   footer {
+    flex-shrink: 0; /* when using height instead of min-height on top wrapper (body/#app) */
     overflow-x: auto;
     background: var(--accent);
     color: var(--box);

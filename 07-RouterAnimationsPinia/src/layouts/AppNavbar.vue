@@ -19,7 +19,8 @@
       <input type="search" placeholder="Search..." class="box" :style="{ width: '100%', padding: 'var(--padding-sm)' }">
     </div>
     <div class="content-right">
-      <button aria-label="right-sidebar">☰</button>
+      <!-- <button aria-label="right-sidebar">☰</button> -->
+       <VClassToggleButton />
     </div>
   </header>
 </template>
@@ -28,6 +29,7 @@
   import { ref, onMounted, onUnmounted } from 'vue'
   import { RouterLink } from 'vue-router';
   import BrandLogo from '@/components/brand/BrandLogo.vue';
+  import VClassToggleButton from '@/components/test/VClassToggleButton.vue';
 
   const emit = defineEmits<{(e: 'resize', height: number): void }>()
 
@@ -64,6 +66,7 @@
 
 <style scoped>
   header {
+    flex-shrink: 0; /* when using height instead of min-height on top wrapper (body/#app) */
     position: fixed;
     z-index: 10;
     display: flex;
