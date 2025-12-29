@@ -7,7 +7,7 @@
     </section>
   </header>
   <VLoader v-if="loadingAll" />
-  <ul v-else-if="users.length" :style="{ maxHeight: getHeight }">
+  <VScrollList v-else-if="users.length" :trackedElements="['nav-header']" :localOffset="getHeight">
     <li v-if="loadingOne">
       <VLoader size="sm" color="white" />
     </li>
@@ -16,24 +16,20 @@
       <p>{{ email }}</p>
       <p>{{ phone }}</p>
     </li>
-  </ul>
+  </VScrollList>
 </template>
 
 <script setup lang="ts">
   import type User from '@/models/User'
   import { computed, ref } from 'vue';
-  import { useDOMTracker } from '@/lib/composables/useDOMTracker';
   import { useFetch } from './useFetch'
   import VLoader from './VLoader.vue'
+  import VScrollList from '../slots/VScrollList.vue';
 
-  // create scroll <list> that takes up only available screen space
-  const { getElement } = useDOMTracker()
+  // local <header> offset for <VScrollList>
   const headerRef = ref<HTMLElement | null>(null)
-
   const getHeight = computed(() => {
-    const navHeight = getElement('nav-header', 'Height')
-    const offset = navHeight + (headerRef.value?.offsetHeight || 0)
-    return `calc(100dvh - ${offset}px - 2rem)` // <ul> margin must be accounted for manually based on CSS (1rem auto = 2rem)
+    return headerRef.value?.offsetHeight || 0
   })
 
   // HTTP Demo
@@ -58,17 +54,8 @@
     gap: 1rem;
     margin: 1rem;
   }
-  ul {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    width: 95%;
-    max-width: var(--screen-sm);
-    min-height: 200px;
-    margin: var(--margin);
-    padding: 1.5rem;
-    border-radius: var(--rounded-lg);
-    overflow-y: scroll;
+  .scroll-list {
     background: var(--element);
+    min-height: 180px;
   }
 </style>

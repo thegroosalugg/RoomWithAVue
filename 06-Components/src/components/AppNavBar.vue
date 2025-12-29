@@ -40,6 +40,7 @@
 
 <style scoped>
   header {
+    flex-shrink: 0; /* when using body height instead of min-height */
     display: flex;
     align-items: center;
     justify-content: space-between;

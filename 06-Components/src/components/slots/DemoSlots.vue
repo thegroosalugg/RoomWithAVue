@@ -43,6 +43,7 @@
       <strong>{{ query }}</strong>
     </template>
   </VSearchList>
+  <VScrollDummy />
 </template>
 
 <script setup lang="ts">
@@ -95,8 +96,7 @@
     padding: 1rem;
     border: var(--border);
     border-radius: var(--rounded-xl);
-    background-color: var(--page);
-    color: var(--fuchsia-500);
+    background-color: var(--outer);
   }
   nav {
     display: flex;

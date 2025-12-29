@@ -61,7 +61,7 @@ a, p, h1, h2, h3, h4, h5, h6, button, label, input, textarea, select, option {
 }
 
 input[type='number']::-webkit-inner-spin-button { -webkit-appearance: none; }
-input[type='number'] { appearance: textfield; -moz-appearance: textfield; }
+input[type='number'] { appearance: textfield;   -moz-appearance: textfield; }
 
 ::-webkit-scrollbar       { width: 1px; height: 1px; }
 ::-webkit-scrollbar-track { background: transparent; }
@@ -85,4 +85,11 @@ body {
   flex-direction: column;
   min-height: 100dvh; /* content fits between browser UI elements */
   background: var(--outer);
+}
+
+/* changes display for mobiles. Fixes dvh re-calculation lag on Chrome/Edge. Must set flex-shrink: 0 on headers/footers */
+@media (pointer: coarse) {
+  body, #app { min-height: auto; }
+  body { position: fixed;   inset: 0;    }
+  #app { height: 100dvh; overflow: auto; }
 }
