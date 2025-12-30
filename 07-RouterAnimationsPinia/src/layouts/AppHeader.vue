@@ -1,7 +1,7 @@
 <template>
   <header ref="headerRef" :class="{ visible: isVisible }">
     <div class="content-left">
-      <button aria-label="left-sidebar-mobile">☰</button>
+      <button aria-label="left-sidebar-mobile" @click="openSidebar('left')">☰</button>
     </div>
     <div class="nav-bar">
       <!-- Configure BrandLogo inline -->
@@ -19,8 +19,8 @@
       <input type="search" placeholder="Search..." class="box" :style="{ width: '100%', padding: 'var(--padding-sm)' }">
     </div>
     <div class="content-right">
-      <!-- <button aria-label="right-sidebar">☰</button> -->
-       <VClassToggleButton />
+      <VClassToggleButton style="margin: 0 0.5rem" />
+      <button aria-label="right-sidebar" @click="openSidebar('right')">☰</button>
     </div>
   </header>
 </template>
@@ -30,7 +30,9 @@
   import { RouterLink } from 'vue-router';
   import BrandLogo from '@/components/brand/BrandLogo.vue';
   import VClassToggleButton from '@/components/test/VClassToggleButton.vue';
+  import { useSidebar } from '@/lib/composables/useSidebar';
 
+  // auto hide on scroll
   const emit = defineEmits<{(e: 'resize', height: number): void }>()
 
   const headerRef = ref<HTMLElement | null>(null)
@@ -62,6 +64,9 @@
     window.removeEventListener('scroll', handleScroll)
     observer?.disconnect()
   })
+
+  // sidebar control
+  const { openSidebar } = useSidebar()
 </script>
 
 <style scoped>

@@ -1,5 +1,5 @@
 <template>
-  <AppNavBar :activeTab="activeTab" @selected="setActiveTab" />
+  <AppHeader :activeTab="activeTab" @selected="setActiveTab" />
   <!-- <component :is="allows you to dynamically inject a component from the <script>" /> -->
   <!-- KeepAlive: preserves component statel; can only accept one child; cannot have a comment in its bounds -->
   <main>
@@ -12,7 +12,7 @@
 <script setup lang="ts">
   import { ref, watch } from 'vue'
   // local component scoping
-  import AppNavBar from './components/AppNavBar.vue'
+  import AppHeader from './components/AppHeader.vue'
   import DemoPropsEmits from './components/props-emits/DemoPropsEmits.vue'
   import DemoProvideInject from './components/provide-inject/DemoProvideInject.vue'
   import DemoSlots from './components/slots/DemoSlots.vue'

@@ -1,5 +1,7 @@
 <template>
-  <AppNavbar @resize="offsetHeight = $event" />
+  <AppHeader @resize="offsetHeight = $event" />
+  <NavigationSidebar />
+  <SettingsSidebar />
   <main :style="{ marginTop: offsetHeight + 'px' }">
     <RouterView />
   </main>
@@ -8,10 +10,14 @@
 
 <script setup lang="ts">
   import { ref } from 'vue'
-  import AppNavbar from './layouts/AppNavbar.vue'
+  import AppHeader from './layouts/AppHeader.vue'
   import AppFooter from './layouts/AppFooter.vue'
+  import NavigationSidebar from './layouts/NavigationSidebar.vue';
+  import SettingsSidebar from './layouts/SettingsSidebar.vue';
+  import { provideSidebar } from './lib/composables/useSidebar';
 
   const offsetHeight = ref(0)
+  provideSidebar()
 </script>
 
 <style scoped>

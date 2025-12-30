@@ -4,7 +4,7 @@
     <div id="modal-content">Modal Content</div>
   </VModal>
   <!--** MULTI SLOTS -->
-  <AppSidebar :isOpen="sidebarIsOpen" :onRight="sideBarIsOnRight" :onClose="closeSideBar">
+  <VSidebar :isOpen="sidebarIsOpen" :onRight="sideBarIsOnRight" :onClose="closeSideBar">
     <!-- v-slot:slot-name === #slot-name (shorthand) -->
     <template #header>
       <nav>
@@ -17,7 +17,7 @@
       </nav>
     </template>
     <VScrollDummy color="fuchsia-500" :elements="35" />
-  </AppSidebar>
+  </VSidebar>
   <!--** Generic Page Controls -->
   <nav style="justify-content: center; align-items: stretch; overflow-x: scroll;">
     <button class="button" @click="openModal">Open Modal</button>
@@ -49,7 +49,7 @@
 <script setup lang="ts">
   import { computed, ref } from 'vue'
   import VModal, { type VModalMethods } from './VModal.vue'
-  import AppSidebar from './AppSidebar.vue'
+  import VSidebar from './VSidebar.vue'
   import VSearchList from './VSearchList.vue'
   import VScrollDummy from '../VScrollDummy.vue';
   import { USERS } from '@/data/users'
