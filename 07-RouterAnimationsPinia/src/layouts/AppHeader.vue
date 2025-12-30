@@ -7,12 +7,7 @@
       <!-- Configure BrandLogo inline -->
       <BrandLogo responsive />
       <!-- Update Nav Links -->
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/router">Router</RouterLink>
-        <RouterLink to="/animations">Animations</RouterLink>
-        <RouterLink to="/pinia">Pinia</RouterLink>
-      </nav>
+      <VNavLinks responsive :links="navLinks" />
     </div>
     <div class="content-center">
       <!-- Replace Dummy Search with real component -->
@@ -27,10 +22,11 @@
 
 <script setup lang="ts">
   import { ref, onMounted, onUnmounted } from 'vue'
-  import { RouterLink } from 'vue-router';
   import BrandLogo from '@/components/brand/BrandLogo.vue';
+  import VNavLinks from '@/components/ui/VNavLinks.vue';
   import VClassToggleButton from '@/components/test/VClassToggleButton.vue';
   import { useSidebar } from '@/lib/composables/useSidebar';
+  import { navLinks } from '@/lib/meta/meta';
 
   // auto hide on scroll
   const emit = defineEmits<{(e: 'resize', height: number): void }>()
@@ -104,33 +100,17 @@
 
     :first-child { /* center brand logo when nav not visible */
       margin: 0 auto;
-
       @media (min-width: 768px) { margin: 0; }
-    }
-
-    nav {
-      display: none;
-      gap: 0.5rem;
-
-      @media (min-width: 768px) { display: flex; }
-
-      a {
-        transition: var(--transition);
-
-        &:hover { text-decoration-line: underline; }
-      }
     }
   }
 
   .content-left {
     display: block;
-
     @media (min-width: 768px) { display: none; }
   }
 
   .content-center {
     display: none;
-
     @media (min-width: 768px) { display: flex; }
   }
 
