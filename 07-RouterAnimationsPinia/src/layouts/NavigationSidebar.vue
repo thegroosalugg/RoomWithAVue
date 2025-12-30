@@ -1,5 +1,8 @@
 <template>
   <VSidebar position="left">
+    <template #header>
+      <h1>Header</h1>
+    </template>
     <VNavLinks column :links="navLinks" />
   </VSidebar>
 </template>

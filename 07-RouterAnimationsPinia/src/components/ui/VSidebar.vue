@@ -2,7 +2,11 @@
   <div class="backdrop" :class="{ visible: isOpen(position) }" @click="closeSidebar" />
   <aside :class="{ visible: isOpen(position), 'on-right': position === 'right' }">
     <div class="content">
-      <slot name="header" />
+      <header>
+        <!-- .button is global CSS; .close for specificity for this button only -->
+        <button class="button close" @click="closeSidebar">X</button>
+        <slot name="header" />
+      </header>
       <main>
         <slot />
       </main>
@@ -65,9 +69,25 @@
     display: flex;
     flex-direction: column;
 
-    main {
-      flex: 1;
-      overflow: auto;
+    > header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem;
+
+      &.on-right { justify-content: end; }
+      @media (max-width: 640px) { padding: 0.5rem; }
     }
+
+    > main { flex: 1; overflow: auto; }
+  }
+  button.close {
+    margin-left: auto;
+    order: 1;
+  }
+  .on-right button.close {
+    margin-left: 0;
+    order: 0;
+    &:only-child { margin-right: auto; }
   }
 </style>
