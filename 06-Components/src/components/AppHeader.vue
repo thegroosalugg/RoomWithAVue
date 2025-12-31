@@ -21,7 +21,8 @@
   const tabs = ['Props & Emits', 'Provide & Inject', 'Slots', 'Forms', 'HTTP']
 
   defineProps<{ activeTab: number }>()
-  defineEmits<{ (e: 'selected', index: number): void }>()
+  // defineEmits<{ (e: 'selected', index: number): void }>() // ** call-signature notation: supports type overloads
+  defineEmits<{ selected: [index: number] }>() // ** Tuple form
 
   // register element to DOM service for tracking size
   const { register, deregister } = useDOMTracker()

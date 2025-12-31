@@ -39,7 +39,8 @@
     console.log(props.caseCheck) // props only need to be saved as const if used within <script setup>
   })
 
-  defineEmits<{ (e: 'selected'): void }>()
+  // defineEmits<{ (e: 'selected'): void }>() // ** call-signature notation
+  defineEmits<{ selected: [] }>() // tuple form
 
   // ref creates reactive state tracked by Vue; updates to .value trigger template re-renders
   const isVisible = ref(false)

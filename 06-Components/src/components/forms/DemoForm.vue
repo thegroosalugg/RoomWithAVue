@@ -91,7 +91,7 @@
     </VFormControl>
     <button class="button" :disabled="isSubmitting">Save</button>
   </form>
-  <VModal ref="modalRef">
+  <VModal ref="modalRef" @closing="resetForm">
     <ul>
       <li v-for="(value, key, index) in form" :key="key">
         <p>({{ index }})</p>
@@ -119,7 +119,6 @@
 
   function closeModal() {
     modalRef.value?.close()
-    resetForm()
   }
 
   const formGroup = {

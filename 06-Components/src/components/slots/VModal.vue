@@ -21,6 +21,8 @@
   const isOpen = ref(false)
   const isClosing = ref(false)
 
+  const emit = defineEmits<{ closing: [] }>() // default signature; event only, no payload
+
   function open() {
     isOpen.value = true
   }
@@ -29,6 +31,7 @@
     isClosing.value = true
     setTimeout(() => {
       isClosing.value = false
+      emit('closing')
       isOpen.value = false
     }, 300) // match CSS animation duration
   }
@@ -47,7 +50,7 @@
     background-color: rgba(0, 0, 0, var(--opacity));
     cursor: pointer;
     transition: background-color 0.3s ease;
-    animation: fadeIn 300ms ease-out forwards;
+    animation: fade-in 300ms ease-out forwards;
 
     &:hover { --opacity: 0.55; }
     &[data-closing='true'] { --opacity: 0; }
@@ -62,8 +65,8 @@
     overflow: auto;
     border: none;
     background: none;
-    animation: slideInFromTop 300ms ease-out forwards;
+    animation: slide-in-from-top 300ms ease-out forwards;
 
-    &[data-closing='true'] { animation: slideOutToTop 300ms ease-in forwards; }
+    &[data-closing='true'] { animation: slide-out-to-top 300ms ease-in forwards; }
   }
 </style>
