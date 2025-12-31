@@ -1,5 +1,3 @@
-import type { NavigationGuard } from 'vue-router'
-
 // use negative hues for b/w bg: -1 black ... -100 white
 const getStyles = (hue: number) => {
   const isGrey = hue < 0
@@ -12,23 +10,25 @@ const getStyles = (hue: number) => {
   return `color: ${color}; background: ${background}; padding: 2px 4px;`
 }
 
-interface RouteLogger {
-  header: string
-      to: NavigationGuard['arguments']
-    from: NavigationGuard['arguments']
-   next?: NavigationGuard['arguments']
-     hue: number
-}
+const getTime = () => new Date().toLocaleTimeString([], {
+    hour: "2-digit",
+  minute: "2-digit",
+  second: "2-digit",
+  hour12: false,
+})
 
-export default function routeLogger({ header, to, from, next, hue }: RouteLogger) {
+export default function logger(hue: number, items: object) {
   const style = getStyles(hue)
+  const time = getTime()
 
-  const message = `
-${header}
-to:        ${to.fullPath}
-from:      ${from.fullPath}
-!!next()?: ${!!next}
-`.trim()
-
-  console.log(`%c${message}`, style)
+  Object.entries(items).forEach(([key, value]) => {
+    const message = `%c${key} @${time}`
+    const isObject = typeof value === 'object' && value !== null
+    if (isObject) {
+      console.log(message, style)
+      console.dir(value)
+    } else {
+      console.log(`${message}\n${value}`, style)
+    }
+  })
 }

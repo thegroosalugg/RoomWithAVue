@@ -25,8 +25,8 @@
     useRouter,
   } from 'vue-router'
   import VScrollDummy from '@/components/test/VScrollDummy.vue';
-  import routeLogger from '@/lib/utils/logger';
   import VHeading from '@/components/ui/VHeading.vue';
+  import logger from '@/lib/utils/logger';
 
   const fruit = ['watermelon','mandarin', 'blood orange', 'florida grapefruit', 'fig']
   const activeModel = ref<string | undefined>(undefined)
@@ -49,7 +49,7 @@
   watch(() => props.testId, updateActiveModel) // ** watch props ref
 
   function navTo(testId: number) {
-    console.log('clicked on ' + testId)
+    console.clear()
     // router.push('/router/' + testId)
     // ** if the route is named, we can pass config objects like params :id
     router.push({ name: 'dynamic-route', params: { testId }, query: { sort: 'asc' }})
@@ -65,12 +65,13 @@
 
   // Router Life Cycles
   onBeforeRouteUpdate((to, from, next) => {
-    routeLogger({ to, from, next, header: 'onBeforeRouteUpdate', hue: 100 })
+    logger(100, { onBeforeRouteUpdate_to: to, from })
     next()
   })
 
   onBeforeRouteLeave(( to, from, next) => {
-    routeLogger({ to, from, next, header: 'onBeforeRouteLeave', hue: 150 })
+    console.clear()
+    logger(150, { onBeforeRouteLeave_to: to, from })
     next()
   })
 

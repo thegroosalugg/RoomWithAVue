@@ -1,14 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import type { NavigationGuard } from 'vue-router'
 import RouterPage from '@/pages/RouterPage.vue'
 import RouterChildPage from '@/pages/RouterChildPage.vue';
-import NotFound from '@/pages/NotFound.vue';
 import RouterChildSiblingPage from '@/pages/RouterChildSiblingPage.vue';
-import routeLogger from '@/lib/utils/logger';
-import type { NavigationGuard } from 'vue-router'
+import AnimationsPage from '@/pages/AnimationsPage.vue';
+import NotFound from '@/pages/NotFound.vue';
+import logger from '@/lib/utils/logger';
 
 // beforeEnter, route specific navGuard must be defined in routes, not as lifecycle, due to composition <script setup>
 const beforeEnter: NavigationGuard = (to, from, next) => {
-  routeLogger({ header: 'beforeEnter', to, from, next, hue: 200 })
+  logger(200, { beforeEnter_to: to, from })
   next()
 }
 
@@ -33,7 +34,7 @@ const routes = [
   // dynamic routes: should load last in group or they overwrite siblings; props: true - sets :id as a prop, not tied to router
   // without props - component is route specific; with props - component is pure and reusable on any route
   { path: '/router/:testId', component: RouterPage, name: 'dynamic-route', props: true },
-  { path: '/animations',     component: NotFound },
+  { path: '/animations',     component: AnimationsPage },
   { path: '/pinia',          component: NotFound },
   // catch-all route: load last in group; :key(.*) can be any text, it is used internally for indexing
   { path: '/:catchall(.*)',  component: NotFound },
@@ -53,13 +54,12 @@ const router = createRouter({
 // ** Navigation guards
 router.beforeEach((to, from, next) => {
   // used for authentication/confirmation dialogs etc. redirect user, block navigation etc.
-  routeLogger({ to, from, next, header: 'beforeEach', hue: 40 })
+  logger(40, { beforeEach_to: to, from })
   next() // accepts boolean, navigation strings | objects
 })
 
 router.afterEach((to, from) => { // no next() on afterEach
-  routeLogger({ to, from, header: 'afterEach', hue: 50 })
-  console.log(to.meta) // custom meta value
+  logger(50, { afterEach_to: to, from })
 })
 
 export default router
