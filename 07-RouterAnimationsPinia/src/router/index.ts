@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import type { NavigationGuard } from 'vue-router'
 import RouterPage from '@/pages/RouterPage.vue'
-import RouterChildPage from '@/pages/RouterChildPage.vue';
-import RouterChildSiblingPage from '@/pages/RouterChildSiblingPage.vue';
+import RouterChildDefaultPage from '@/pages/RouterChildDefaultPage.vue';
+import RouterChildParallelPage from '@/pages/RouterChildParallelPage.vue';
 import AnimationsPage from '@/pages/AnimationsPage.vue';
 import NotFound from '@/pages/NotFound.vue';
 import logger from '@/lib/utils/logger';
@@ -25,8 +25,8 @@ const routes = [
       {
               path: 'child',
               name: 'router-child', // name: allows navigation directly to route without full path
-        // like slots, a route can have multiple children. default: reserved, [second]: name as you like
-        components: { default: RouterChildPage, second: RouterChildSiblingPage },
+        // like slots, a route can have multiple children. default: reserved, [parallel]: name as you like
+        components: { default: RouterChildDefaultPage, parallel: RouterChildParallelPage },
         beforeEnter,
       },
     ],

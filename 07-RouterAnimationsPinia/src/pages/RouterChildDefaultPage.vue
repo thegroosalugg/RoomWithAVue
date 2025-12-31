@@ -1,5 +1,5 @@
 <template>
-  <VHeading title="Router Child Page" class="box" />
+  <VHeading title="#Default <RouterView/>" class="box" />
 </template>
 
 <script setup lang="ts">

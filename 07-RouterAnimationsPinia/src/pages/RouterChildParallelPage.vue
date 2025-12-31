@@ -1,6 +1,6 @@
 <template>
-  <VHeading title="Router Nested Sibling Page" class="box" />
-  <VScrollDummy color="teal-500" />
+  <VHeading title="[Parallel] <RouterView/>" class="box" />
+  <VScrollDummy color="teal-500" :elements="8" />
 </template>
 
 <script setup lang="ts">

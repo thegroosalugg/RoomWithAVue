@@ -6,17 +6,18 @@
     <RouterLink class="button" :to="{ name: 'router-child' }">Nav to child</RouterLink>
   </section>
   <!-- property loses reactivity if saved as const in <script> -->
-  <p v-if="route.params.testId">You are visiting :testId {{ route.params.testId }}</p>
-  <VScrollDummy v-else-if="route.fullPath === '/router'" />
-  <p v-if="activeModel">Fetched data: {{ activeModel }}</p>
+  <p v-if="route.params.testId">Params: :testId <strong>{{ route.params.testId }}</strong></p>
+  <p v-if="activeModel">Fetched data: <strong>{{ activeModel }}</strong></p>
+  <VHeading v-if="rootPath" class="box" title="/ root path" />
+  <VScrollDummy v-if="rootPath" :elements="13"/>
   <!-- Nested RouterView renders children of current route -->
   <RouterView />
   <!-- Like slots, can render multiple route children, by using name of non default routes -->
-  <RouterView name="second" />
+  <RouterView name="parallel" />
 </template>
 
 <script setup lang="ts">
-  import { ref, watch } from 'vue';
+  import { computed, ref, watch } from 'vue';
   import {
     onBeforeRouteLeave,
     onBeforeRouteUpdate,
@@ -47,6 +48,8 @@
   // ** () => to watch a nested prop of a ref, it must be wrapped in an arrow fn
   // watch(() => route.params.testId, updateActiveModel) // ** watch route ref
   watch(() => props.testId, updateActiveModel) // ** watch props ref
+
+  const rootPath = computed(() => route.fullPath === '/router')
 
   function navTo(testId: number) {
     console.clear()
@@ -87,7 +90,8 @@
     padding: var(--padding-sm);
   }
   p {
-    text-align: center;
-    color: var(--accent);
+    margin: 0.25rem auto;
+    &:last-of-type { margin-bottom: 0.5rem; }
+    strong { color: var(--accent); }
   }
 </style>
