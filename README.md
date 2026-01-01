@@ -14,6 +14,9 @@ Vue.JS development projects
 - .gitignore
   - .env
   - .env.local
+- main.ts
+  - when using route transitions add:
+    - await router.isReady()
 
 ### 01 Intro
 - basic Vue.Js set up with CDN (Content Delivery Network) import
@@ -54,6 +57,10 @@ Vue.JS development projects
 - useRoute(): current route object; useRouter(): current router instance
 - .router-link-active | .router-link-exact-active
 - beforeEnter, beforeUpdate, beforeLeave, onBeforeRouteUpdate, onBeforeRouteLeave
+#### Animations
+  - <Transition>; <TransitionGroup>
+  - .v-(enter|leave)-from; v.enter-to; v-enter-active; v-move
+#### Pinia
 
 ### Additional Config when installing Vue with Prettier
 #### package.json

@@ -1,19 +1,21 @@
 <template>
-  <VHeading title="Routing" />
-  <section>
-    <button v-for="num in 5" :key="num" class="button" @click="navTo(num)">Nav to {{ num }}</button>
-    <!-- nav paths must be absolute: router/child, or via their name in route config -->
-    <RouterLink class="button" :to="{ name: 'router-child' }">Nav to child</RouterLink>
-  </section>
-  <!-- property loses reactivity if saved as const in <script> -->
-  <p v-if="route.params.testId">Params: :testId <strong>{{ route.params.testId }}</strong></p>
-  <p v-if="activeModel">Fetched data: <strong>{{ activeModel }}</strong></p>
-  <VHeading v-if="rootPath" class="box" title="/ root path" />
-  <VScrollDummy v-if="rootPath" :elements="13"/>
-  <!-- Nested RouterView renders children of current route -->
-  <RouterView />
-  <!-- Like slots, can render multiple route children, by using name of non default routes -->
-  <RouterView name="parallel" />
+  <VPage>
+    <VHeading title="Routing" />
+    <section>
+      <button v-for="num in 5" :key="num" class="button" @click="navTo(num)">Nav to {{ num }}</button>
+      <!-- nav paths must be absolute: router/child, or via their name in route config -->
+      <RouterLink class="button" :to="{ name: 'router-child' }">Nav to child</RouterLink>
+    </section>
+    <!-- property loses reactivity if saved as const in <script> -->
+    <p v-if="route.params.testId">Params: :testId <strong>{{ route.params.testId }}</strong></p>
+    <p v-if="activeModel">Fetched data: <strong>{{ activeModel }}</strong></p>
+    <VHeading v-if="rootPath" class="box" title="/ root path" />
+    <VScrollDummy v-if="rootPath" :elements="13"/>
+    <!-- Nested RouterView renders children of current route -->
+    <RouterView />
+    <!-- Like slots, can render multiple route children, by using name of non default routes -->
+    <RouterView name="parallel" />
+  </VPage>
 </template>
 
 <script setup lang="ts">
@@ -25,6 +27,7 @@
     useRoute,
     useRouter,
   } from 'vue-router'
+  import VPage from '@/components/ui/VPage.vue';
   import VScrollDummy from '@/components/test/VScrollDummy.vue';
   import VHeading from '@/components/ui/VHeading.vue';
   import logger from '@/lib/utils/logger';

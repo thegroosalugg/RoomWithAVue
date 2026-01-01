@@ -1,59 +1,62 @@
 <template>
-  <VHeading title="Animations" />
-  <section>
-    <button class="button" @click="isOpen       = !isOpen"      >Hide | Show</button>
-    <button class="button" @click="hasSwitched  = !hasSwitched" >If | Else</button>
-    <button class="button" @click="shouldAppear = !shouldAppear">JS</button>
-  </section>
-  <div class="box center" style="width: 125px; color: var(--sky-500)">
-    <h1>Disclosure</h1>
-    <!-- <transition> == <AnimatePresense>: can only wrap a single element; requires v-if | v-show   -->
-    <!-- name allows custom class names: .v-enter-active => .name-enter-active -->
-    <Transition
-      name="p"
-      @beforeEnter="logger(280, { beforeEnter: '<p>' })"
-      @beforeLeave="logger(300, { beforeLeave: '<p>' })"
-    >
-      <p v-if="isOpen" style="margin: var(--margin); color: var(--emerald-500)">Hidden Content</p>
-    </Transition>
-  </div>
-  <!-- transition allows multiple if-else children as long as only 1 child is finally rendered -->
-  <!-- mode   (like <AnimatePresense>) default = sync; in-out = wait; out-in = popLayout -->
-  <!-- appear (like <AnimatePresense> initial); @before = transition events, run custom logic -->
-  <Transition name="if-else" mode="out-in" appear @beforeAppear="logger(320, { beforeAppear: 'if | else <div>' })">
-    <div v-if="!hasSwitched" class="box center" style="color: var(--violet-500)">IF</div>
-    <div v-else              class="box center" style="color: var(--pink-500)">ELSE</div>
-  </Transition>
-  <!-- JavaScript Hooks: can be used to create custome animations with JS -->
-  <!-- automatically pass <Element> to function; onEnter | onLeave also pass done(): tells transition when to proceed -->
-  <!-- enter | leaveCancelled can be used to clear intervals if your animation flickers -->
-  <!-- css=false improves performance as component won't search for classes -->
-  <Transition
-    :css="false"
-    @beforeEnter="onBeforeEnter"
-    @enter="onEnter"
-    @leave="onLeave"
-    @enterCancelled="onCancel('enter')"
-    @leaveCancelled="onCancel('leave')"
-  >
-    <div v-show="shouldAppear" class="box center" style="color: var(--yellow-500)">
-      JavaScript
+  <VPage>
+    <VHeading title="Animations" />
+    <section>
+      <button class="button" @click="isOpen       = !isOpen"      >Hide | Show</button>
+      <button class="button" @click="hasSwitched  = !hasSwitched" >If | Else</button>
+      <button class="button" @click="shouldAppear = !shouldAppear">JS</button>
+    </section>
+    <div class="box center" style="width: 125px; color: var(--sky-500)">
+      <h1>Disclosure</h1>
+      <!-- <transition> == <AnimatePresense>: can only wrap a single element; requires v-if | v-show   -->
+      <!-- name allows custom class names: .v-enter-active => .name-enter-active -->
+      <Transition
+        name="p"
+        @beforeEnter="logger(280, { beforeEnter: '<p>' })"
+        @beforeLeave="logger(300, { beforeLeave: '<p>' })"
+      >
+        <p v-if="isOpen" style="margin: var(--margin); color: var(--emerald-500)">Hidden Content</p>
+      </Transition>
     </div>
-  </Transition>
-  <form @submit.prevent="addItem">
-    <input class="box" v-model.trim="input" placeholder="add item..." />
-    <button class="button">Add</button>
-  </form>
-  <!-- <TransitionGroup> allows animating of dynamic lists. tag: any HTML or custom Component -->
-  <TransitionGroup tag="ul" name="group">
-    <li v-for="{ id, name } in list" :key="id" class="box" style="color: var(--red-500)" @click="removeItem(id)">
-      {{ name }}
-    </li>
-  </TransitionGroup>
+    <!-- transition allows multiple if-else children as long as only 1 child is finally rendered -->
+    <!-- mode   (like <AnimatePresense>) default = sync; in-out = wait; out-in = popLayout -->
+    <!-- appear (like <AnimatePresense> initial); @before = transition events, run custom logic -->
+    <Transition name="if-else" mode="out-in" appear @beforeAppear="logger(320, { beforeAppear: 'if | else <div>' })">
+      <div v-if="!hasSwitched" class="box center" style="color: var(--violet-500)">IF</div>
+      <div v-else              class="box center" style="color: var(--pink-500)">ELSE</div>
+    </Transition>
+    <!-- JavaScript Hooks: can be used to create custome animations with JS -->
+    <!-- automatically pass <Element> to function; onEnter | onLeave also pass done(): tells transition when to proceed -->
+    <!-- enter | leaveCancelled can be used to clear intervals if your animation flickers -->
+    <!-- css=false improves performance as component won't search for classes -->
+    <Transition
+      :css="false"
+      @beforeEnter="onBeforeEnter"
+      @enter="onEnter"
+      @leave="onLeave"
+      @enterCancelled="onCancel('enter')"
+      @leaveCancelled="onCancel('leave')"
+    >
+      <div v-show="shouldAppear" class="box center" style="color: var(--yellow-500)">
+        JavaScript
+      </div>
+    </Transition>
+    <form @submit.prevent="addItem">
+      <input class="box" v-model.trim="input" placeholder="add item..." />
+      <button class="button">Add</button>
+    </form>
+    <!-- <TransitionGroup> allows animating of dynamic lists. tag: any HTML or custom Component -->
+    <TransitionGroup tag="ul" name="group">
+      <li v-for="{ id, name } in list" :key="id" class="box" style="color: var(--red-500)" @click="removeItem(id)">
+        {{ name }}
+      </li>
+    </TransitionGroup>
+  </VPage>
 </template>
 
 <script setup lang="ts">
   import { ref } from 'vue'
+  import VPage from '@/components/ui/VPage.vue';
   import VHeading from '@/components/ui/VHeading.vue'
   import logger from '@/lib/utils/logger';
   import type { CSSStyles } from '@/lib/types/styles';

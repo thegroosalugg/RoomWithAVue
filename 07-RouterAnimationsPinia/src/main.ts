@@ -12,4 +12,6 @@ const app = createApp(App)
 app.use(createPinia())
 app.use(router)
 
+// Prevents initial page transition when app first mounts
+await router.isReady()
 app.mount('#app')
