@@ -34,6 +34,8 @@
     /* color: var(--accent); */
   }
 
+  svg { flex-shrink: 0; }
+
   .brand-name {
     font-size: var(--text-base);
     font-weight: 700;

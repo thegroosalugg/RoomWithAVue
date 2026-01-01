@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 
 :root {
+  interpolate-size: allow-keywords; /* Chrome | Edge */
+
   --page:    var(--stone-200); /* page/box: background surfaces */
   --box:     var(--stone-100);
   --text:    var(--stone-900); /* text/soft: typography */
@@ -77,8 +79,9 @@ body {
   min-height: 100svh; /* content fits between browser UI elements */
 }
 
-/* # disabled for toggle class testing */
-/* # changes display for mobiles. Fixes dvh re-calculation lag on Chrome/Edge. Must set flex-shrink: 0 on headers/footers */
+/* ## EXPERIMENTAL ## */
+/* changes display for mobiles. Fixes dvh re-calculation lag on Chrome/Edge.
+...Must set flex-shrink: 0 on headers/footers. Prevents scroll based events (auto hiding elements) */
 /* @media (pointer: coarse) {
   body, #app { min-height: auto; }
   body { position: fixed;   inset: 0;    }

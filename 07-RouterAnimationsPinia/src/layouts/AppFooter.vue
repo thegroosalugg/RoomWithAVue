@@ -1,6 +1,5 @@
 <template>
   <footer>
-    <hr />
     <section class="top-section">
       <!-- Keep <h1> for layout styles - Configure BrandLogo inline -->
       <h1><BrandLogo color="page" /></h1>
@@ -12,7 +11,6 @@
       </nav>
       <h1><BrandLogo color="page" /></h1>
     </section>
-    <hr />
     <section class="bottom-section">
       <p>2025 Vue App. All rights Reserved</p>
       <a href="link" target="_blank">View Source Code</a>
@@ -28,14 +26,12 @@
 <style scoped>
   footer {
     flex-shrink: 0; /* when using height instead of min-height on top wrapper (body/#app) */
-    overflow-x: auto;
     background: var(--accent);
     color: var(--box);
     box-shadow: var(--shadow-top);
 
     a, p, h1, hr { transition: var(--transition); }
     a:hover      { font-weight: 700; }
-    hr           { border: var(--border) var(--box); }
   }
 
   .top-section, .bottom-section {
@@ -44,6 +40,8 @@
     align-items: center; /* ## overwrites bottom-section > children text-align in column */
     gap: 0.5rem;
     padding: 1.5rem 1rem;
+    border-top: 2px solid var(--box);
+    overflow-x: scroll;
     font-size: var(--text-sm);
   }
 
@@ -83,7 +81,7 @@
     font-size: var(--text-xs);
     box-shadow: var(--shadow-top);
 
-    > * { flex-basis: 33.3333% }
+    > * { flex-basis: 33.3333%; }
 
     :nth-child(2) { text-align: center; }
     :nth-child(3) { text-align: end;    } /* ## overwriten by align-items: center in column */

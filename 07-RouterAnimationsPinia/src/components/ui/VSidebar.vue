@@ -74,6 +74,7 @@
       align-items: center;
       gap: 0.5rem;
       padding: 1rem;
+      overflow-x: scroll;
 
       &.on-right { justify-content: end; }
       @media (max-width: 640px) { padding: 0.5rem; }
