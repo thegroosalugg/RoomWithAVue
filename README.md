@@ -58,7 +58,7 @@ Vue.JS development projects
 - .router-link-active | .router-link-exact-active
 - beforeEnter, beforeUpdate, beforeLeave, onBeforeRouteUpdate, onBeforeRouteLeave
 #### Transition
-  - <Transition>; <TransitionGroup>
+  -  &lt;Transition&gt;;  &lt;TransitionGroup&gt;
   - .v-(enter|leave)-from; v.enter-to; v-enter-active; v-move
 #### Pinia
   - src/store/counter.ts provides sufficient demo
