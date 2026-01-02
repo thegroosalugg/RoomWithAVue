@@ -1,8 +1,8 @@
 <template>
-  <AppNavBar :activeTab="activeTab" @selected="setActiveTab" />
+  <AppHeader :activeTab="activeTab" @selected="setActiveTab" />
   <!-- <component :is="allows you to dynamically inject a component from the <script>" /> -->
   <!-- KeepAlive: preserves component statel; can only accept one child; cannot have a comment in its bounds -->
-  <main id="main">
+  <main>
     <KeepAlive>
       <component :is="views[activeTab]" />
     </KeepAlive>
@@ -12,12 +12,15 @@
 <script setup lang="ts">
   import { ref, watch } from 'vue'
   // local component scoping
-  import AppNavBar from './components/AppNavBar.vue'
+  import AppHeader from './components/AppHeader.vue'
   import DemoPropsEmits from './components/props-emits/DemoPropsEmits.vue'
   import DemoProvideInject from './components/provide-inject/DemoProvideInject.vue'
   import DemoSlots from './components/slots/DemoSlots.vue'
   import DemoForm from './components/forms/DemoForm.vue'
   import DemoHTTP from './components/http/DemoHTTP.vue'
+  import { provideDOMTracker } from './lib/composables/useDOMTracker';
+
+  provideDOMTracker() // register and observe any DOM element
 
   const views = [DemoPropsEmits, DemoProvideInject, DemoSlots, DemoForm, DemoHTTP]
 
@@ -33,3 +36,12 @@
     localStorage.setItem(STORAGE_KEY, String(value))
   })
 </script>
+
+<style scoped>
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: var(--inner);
+  }
+</style>

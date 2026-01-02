@@ -24,7 +24,8 @@
   // **  React pattern; inject context values with custom hook
   const { entries } = useEntries()
 
-  defineEmits<{ (e: 'select', entryId: string): void }>()
+  // defineEmits<{ (e: 'select', entryId: string): void }>() // ** call-signature notation
+  defineEmits<{ select: [entryId: string] }>() // ** tuple form
 </script>
 
 <style scoped>

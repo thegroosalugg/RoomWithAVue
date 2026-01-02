@@ -13,6 +13,9 @@
         <strong>Email:</strong>
         {{ user.email }}
       </li>
+      <li>
+        <small><strong>ID:</strong> {{ user.id }}</small>
+      </li>
     </ul>
     <!-- use $emit('event-name', payloadData) for small, direct payloads. Reference a function in <script> when working with greater logic -->
     <button v-if="isVisible" class="button delete" @click="$emit('selected')">
@@ -36,7 +39,8 @@
     console.log(props.caseCheck) // props only need to be saved as const if used within <script setup>
   })
 
-  defineEmits<{ (e: 'selected'): void }>()
+  // defineEmits<{ (e: 'selected'): void }>() // ** call-signature notation
+  defineEmits<{ selected: [] }>() // tuple form
 
   // ref creates reactive state tracked by Vue; updates to .value trigger template re-renders
   const isVisible = ref(false)
@@ -55,7 +59,6 @@
   }
   h2 {
     font-size: var(--text-3xl);
-    border-bottom: 4px solid var(--support);
     color: var(--accent);
     margin: 0 0 1rem 0;
   }

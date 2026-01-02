@@ -1,30 +1,25 @@
 <template>
   <!-- ** SLOTS -->
-  <VModal :isOpen="modalIsOpen" :onClose="closeModal">
+  <VModal ref="modalRef">
     <div id="modal-content">Modal Content</div>
   </VModal>
   <!--** MULTI SLOTS -->
-  <AppSidebar :isOpen="sidebarIsOpen" :onRight="sideBarIsOnRight" :onClose="closeSideBar">
+  <VSidebar :isOpen="sidebarIsOpen" :onRight="sideBarIsOnRight" :onClose="closeSideBar">
     <!-- v-slot:slot-name === #slot-name (shorthand) -->
     <template #header>
       <nav>
-        <button
-          v-for="num in 6"
-          :key="num"
-          class="box"
-          :style="buttonProps(num).style"
-          @click="buttonProps(num).click"
-        >
-          {{ buttonProps(num).label }}
-        </button>
+        <button class="button square" @click="closeSideBar" :style>X</button>
+        <section>
+          <button v-for="letter in ['a', 'b', 'c', 'd', 'e']" :key="letter" class="box square">
+            {{ letter }}
+          </button>
+        </section>
       </nav>
     </template>
-    <ul>
-      <li v-for="num in 100" :key="num" class="box">{{ num }}</li>
-    </ul>
-  </AppSidebar>
+    <VScrollDummy color="fuchsia-500" :elements="35" />
+  </VSidebar>
   <!--** Generic Page Controls -->
-  <nav>
+  <nav style="justify-content: center; align-items: stretch; overflow-x: scroll;">
     <button class="button" @click="openModal">Open Modal</button>
     <button class="button" @click="openSideBar">Open SideBar</button>
     <button class="button" @click="toggleSideBarPosition">SideBar Left-Right</button>
@@ -33,39 +28,40 @@
   <!-- #default: access to main slot, with multi-slots, or slots with props. Can be set on <VSearchList #default="props"> when only 1 used slot -->
   <VSearchList :items="users" searchKey="name">
     <template #default="{ item, query }">
-      <p v-if="query">Matched for: {{ query }}</p>
       <article class="box">
-        <h2>Name: {{ item.name }}</h2>
+        <h2>
+          <strong v-if="query">{{ query }} === </strong>
+          <span v-else>Name: </span>
+          <span>{{ item.name }}</span>
+        </h2>
         <p>Phone: {{ item.phone }}</p>
         <p>Email: {{ item.email }}</p>
       </article>
     </template>
     <template #empty="{ query }">
-      <p>SlotsDemo.vue, no matches for</p>
-      <p>{{ query }}</p>
+      <p>DemoSlots.vue: no matches for</p>
+      <strong>{{ query }}</strong>
     </template>
   </VSearchList>
+  <VScrollDummy />
 </template>
 
 <script setup lang="ts">
-  import { ref } from 'vue'
-  import VModal from './VModal.vue'
-  import AppSidebar from './AppSidebar.vue'
+  import { computed, ref } from 'vue'
+  import VModal, { type VModalMethods } from './VModal.vue'
+  import VSidebar from './VSidebar.vue'
   import VSearchList from './VSearchList.vue'
+  import VScrollDummy from '../VScrollDummy.vue';
   import { USERS } from '@/data/users'
 
-  const modalIsOpen = ref(false)
+  const modalRef = ref<VModalMethods>()
   const sidebarIsOpen = ref(false)
   const sideBarIsOnRight = ref(false)
 
   const users = ref(USERS)
 
   function openModal() {
-    modalIsOpen.value = true
-  }
-
-  function closeModal() {
-    modalIsOpen.value = false
+    modalRef.value?.open()
   }
 
   function openSideBar() {
@@ -80,22 +76,10 @@
     sideBarIsOnRight.value = !sideBarIsOnRight.value
   }
 
-  // sidebar close button auto stype, position & function
-  function buttonProps(num: number) {
-    let label = num.toString()
-    let style = {}
-    let click = () => console.log('click ' + num)
-
-    const specialNum = sideBarIsOnRight.value ? 1 : 6
-
-    if (num === specialNum) {
-      label = 'X'
-      click = closeSideBar
-      style = sideBarIsOnRight.value ? { marginRight: 'auto' } : { marginLeft: 'auto' }
-    }
-
-    return { label, style, click }
-  }
+  const style = computed(() => {
+    const [order, margin] = sideBarIsOnRight.value ? [0, '0 auto 0 0'] : [1, '0 0 0 auto']
+    return { order, margin }
+  })
 </script>
 
 <style scoped>
@@ -108,22 +92,25 @@
     padding: 1rem;
     border: var(--border);
     border-radius: var(--rounded-xl);
-    background-color: var(--page);
-    color: var(--fuchsia-500);
+    background-color: var(--outer);
   }
   nav {
     display: flex;
-    justify-content: center;
+    align-items: center;
     gap: 0.5rem;
-    padding: 0.5rem;
+    padding: var(--padding-md);
     border-bottom: var(--border);
-    overflow-x: scroll;
+
+    section {
+      display: flex;
+      gap: 0.5rem;
+      padding: 0.25rem;
+      overflow-x: scroll;
+    }
   }
-  ul {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    padding: 1rem;
+  .square {
+    min-width: 44px;
+    height: 44px;
   }
   /* Parent scoped styles can also style the First Wrapper of a Child Component (Careful when selecting DOM elements specifically with children) */
   .search-list {

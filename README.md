@@ -2,15 +2,21 @@
 Vue.JS development projects
 
 ## Reminder:
-- public.robots.txt
-  -User-agent: *
+- public/robots.txt
+  - User-agent: *
   - Disallow:
 - index.html:
-  - lang="end"
+  - lang="en"
   - < meta name="description" content="Vue App" >
 - vite.config.ts
   - when port fowarding add:
     - server: { host: true },
+- .gitignore
+  - .env
+  - .env.local
+- main.ts
+  - when using route transitions add:
+    - await router.isReady()
 
 ### 01 Intro
 - basic Vue.Js set up with CDN (Content Delivery Network) import
@@ -43,6 +49,19 @@ Vue.JS development projects
 - HTTP Requests
   - with dummy Python Flask server
   - created re-usable fetch function and composable
+### 07 Router & Transitions
+#### Router
+- { '/route', component: MyComponent, alias: '/routesFromThisPathToo' }
+- { '/route/:dynamic', component: MyComponent, props: true }
+- { '/:catchAll(.*)', component: NotFound }
+- useRoute(): current route object; useRouter(): current router instance
+- .router-link-active | .router-link-exact-active
+- beforeEnter, beforeUpdate, beforeLeave, onBeforeRouteUpdate, onBeforeRouteLeave
+#### Transition
+  - <Transition>; <TransitionGroup>
+  - .v-(enter|leave)-from; v.enter-to; v-enter-active; v-move
+#### Pinia
+  - src/store/counter.ts provides sufficient demo
 
 ### Additional Config when installing Vue with Prettier
 #### package.json

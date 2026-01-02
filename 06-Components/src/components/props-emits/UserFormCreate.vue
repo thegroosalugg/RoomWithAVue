@@ -15,7 +15,8 @@
   const formGroup = { name: '', email: '', phone: '' }
   const form = ref({ ...formGroup }) // v-model <input> values
 
-  const emit = defineEmits<{ (e: 'submit', user: User): void }>() // output data to <parent>
+  // const emit = defineEmits<{ (e: 'submit', user: User): void }>() // ** call-signature notation
+  const emit = defineEmits<{ submit: [user: User] }>() // ** tuple form
 
   // emit event
   function submitForm() {

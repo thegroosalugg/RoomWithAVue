@@ -16,6 +16,11 @@
   --font-major: "Montserrat", serif;
   --font-minor: "Lato", sans-serif;
 
+  /* give containers seperate BGs for layout testing */
+  --outer: var(--emerald-300);
+  --inner: var(--amber-300);
+  --element: var(--rose-300);
+
   @media (prefers-color-scheme: dark) {
     --page:    var(--stone-800);
     --box:     var(--stone-700);
@@ -28,6 +33,10 @@
     --success: var(--lime-400);
     --danger:  var(--rust-400);
     --transparent: #00000000;
+
+    --outer: var(--gray-950);
+    --inner: var(--steel-950);
+    --element: var(--sky-950);
   }
 }
 
@@ -52,7 +61,7 @@ a, p, h1, h2, h3, h4, h5, h6, button, label, input, textarea, select, option {
 }
 
 input[type='number']::-webkit-inner-spin-button { -webkit-appearance: none; }
-input[type='number'] { appearance: textfield; -moz-appearance: textfield; }
+input[type='number'] { appearance: textfield;   -moz-appearance: textfield; }
 
 ::-webkit-scrollbar       { width: 1px; height: 1px; }
 ::-webkit-scrollbar-track { background: transparent; }
@@ -61,7 +70,6 @@ input[type='number'] { appearance: textfield; -moz-appearance: textfield; }
 @supports (scrollbar-color: auto) and (not selector(::-webkit-scrollbar)) {
   * { scrollbar-width: thin; scrollbar-color: var(--text) transparent; }
 }
-
 /* </CSSReset> */
 
 body {
@@ -76,8 +84,14 @@ body {
   display: flex; /* Flex set on first available wrapper around header/main/footer */
   flex-direction: column;
   min-height: 100dvh; /* content fits between browser UI elements */
+  background: var(--outer);
 }
 
-#main {
-  flex: 1;
+/* ## EXPERIMENTAL ## */
+/* changes display for mobiles. Fixes dvh re-calculation lag on Chrome/Edge.
+...Must set flex-shrink: 0 on headers/footers. Prevents scroll based events (auto hiding elements) */
+@media (pointer: coarse) {
+  body, #app { min-height: auto; }
+  body { position: fixed;   inset: 0;    }
+  #app { height: 100dvh; overflow: auto; }
 }
