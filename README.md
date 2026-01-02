@@ -49,7 +49,7 @@ Vue.JS development projects
 - HTTP Requests
   - with dummy Python Flask server
   - created re-usable fetch function and composable
-### 07 Router, Animations, Pinia
+### 07 Router & Transitions
 #### Router
 - { '/route', component: MyComponent, alias: '/routesFromThisPathToo' }
 - { '/route/:dynamic', component: MyComponent, props: true }
@@ -57,10 +57,11 @@ Vue.JS development projects
 - useRoute(): current route object; useRouter(): current router instance
 - .router-link-active | .router-link-exact-active
 - beforeEnter, beforeUpdate, beforeLeave, onBeforeRouteUpdate, onBeforeRouteLeave
-#### Animations
+#### Transition
   - <Transition>; <TransitionGroup>
   - .v-(enter|leave)-from; v.enter-to; v-enter-active; v-move
 #### Pinia
+  - src/store/counter.ts provides sufficient demo
 
 ### Additional Config when installing Vue with Prettier
 #### package.json

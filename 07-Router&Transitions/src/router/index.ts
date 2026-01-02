@@ -35,7 +35,6 @@ const routes = [
   // without props - component is route specific; with props - component is pure and reusable on any route
   { path: '/router/:testId', component: RouterPage, name: 'dynamic-route', props: true },
   { path: '/animations',     component: AnimationsPage },
-  { path: '/pinia',          component: NotFound },
   // catch-all route: load last in group; :key(.*) can be any text, it is used internally for indexing
   { path: '/:catchall(.*)',  component: NotFound },
 ]
