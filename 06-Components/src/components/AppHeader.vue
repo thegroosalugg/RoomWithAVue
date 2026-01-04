@@ -18,7 +18,7 @@
   import { useDOMTracker } from '@/lib/composables/useDOMTracker';
   import { onMounted, onUnmounted, ref } from 'vue';
 
-  const tabs = ['Props & Emits', 'Provide & Inject', 'Slots', 'Forms', 'HTTP']
+  const tabs = ['Composition', 'Props & Emits', 'Provide & Inject', 'Slots', 'Forms', 'HTTP']
 
   defineProps<{ activeTab: number }>()
   // defineEmits<{ (e: 'selected', index: number): void }>() // ** call-signature notation: supports type overloads

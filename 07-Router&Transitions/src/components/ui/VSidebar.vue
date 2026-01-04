@@ -77,12 +77,14 @@
       overflow-x: scroll;
 
       &.on-right { justify-content: end; }
-      @media (max-width: 640px) { padding: 0.5rem; }
+      /* @media (max-width: 640px) { padding: 0.5rem; } */
     }
 
     > main { flex: 1; overflow: auto; }
   }
   button.close {
+    width: 40px;
+    aspect-ratio: 1;
     margin-left: auto;
     order: 1;
   }

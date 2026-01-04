@@ -120,7 +120,7 @@
   }
 
   button {
-    width: 30px;
+    width: 40px;
     aspect-ratio: 1;
     padding: 0.25rem;
     border: var(--border);

@@ -73,7 +73,6 @@ input[type='number'] { appearance: textfield;   -moz-appearance: textfield; }
 /* </CSSReset> */
 
 body {
-  min-height: 100vh; /* overlays stretch to screen height */
   line-height: 1.2;
   color: var(--text);
   background: var(--page);
@@ -90,8 +89,8 @@ body {
 /* ## EXPERIMENTAL ## */
 /* changes display for mobiles. Fixes dvh re-calculation lag on Chrome/Edge.
 ...Must set flex-shrink: 0 on headers/footers. Prevents scroll based events (auto hiding elements) */
-@media (pointer: coarse) {
+/* @media (pointer: coarse) {
   body, #app { min-height: auto; }
   body { position: fixed;   inset: 0;    }
   #app { height: 100dvh; overflow: auto; }
-}
+} */

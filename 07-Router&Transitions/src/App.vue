@@ -28,7 +28,7 @@
 </script>
 
 <style scoped>
-  main { flex: 1; display: flex; } /* flex-row as component only allowed 1 child */
+  main { flex: 1; display: flex; flex-direction: column; }
   .page-enter-from, .page-leave-to { opacity: 0; transform: scale(0.9); }
   .page-enter-to, .page-leave-from { opacity: 1; transform: scale(1);   }
   .page-enter-active { transition: 0.4s ease-out; }
