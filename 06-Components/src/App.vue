@@ -13,6 +13,7 @@
   import { ref, watch } from 'vue'
   // local component scoping
   import AppHeader from './components/AppHeader.vue'
+  import DemoCompositionAPI from './components/DemoCompositionAPI.vue';
   import DemoPropsEmits from './components/props-emits/DemoPropsEmits.vue'
   import DemoProvideInject from './components/provide-inject/DemoProvideInject.vue'
   import DemoSlots from './components/slots/DemoSlots.vue'
@@ -22,7 +23,7 @@
 
   provideDOMTracker() // register and observe any DOM element
 
-  const views = [DemoPropsEmits, DemoProvideInject, DemoSlots, DemoForm, DemoHTTP]
+  const views = [DemoCompositionAPI, DemoPropsEmits, DemoProvideInject, DemoSlots, DemoForm, DemoHTTP]
 
   const STORAGE_KEY = 'activeTab'
 

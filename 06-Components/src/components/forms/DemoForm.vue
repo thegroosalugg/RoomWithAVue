@@ -227,7 +227,7 @@
       &:nth-of-type(3) {
         margin-left: 0.5rem;
         padding: var(--padding-xs);
-        background-color: var(--box);
+        font-weight: 700;
         text-align: end;
       }
     }

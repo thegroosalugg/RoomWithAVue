@@ -14,6 +14,8 @@ Vue.JS development projects
 - .gitignore
   - .env
   - .env.local
+-pterrierrc.json
+  - "vueIndentScriptAndStyle": true
 - main.ts
   - when using route transitions add:
     - await router.isReady()
